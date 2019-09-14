@@ -1,0 +1,35 @@
+Checks: '*,-fuchsia-default-arguments,-fuchsia-statically-constructed-objects,-cppcoreguidelines-pro-bounds-array-to-pointer-decay,-cppcoreguidelines-pro-bounds-pointer-arithmetic,-hicpp-no-array-decay,-cppcoreguidelines-macro-usage,-cppcoreguidelines-pro-type-reinterpret-cast,-readability-avoid-const-params-in-decls'
+
+CheckOptions:
+  - key:   readability-identifier-naming.ClassCase
+    value: CamelCase
+  - key:   readability-identifier-naming.ClassConstantCase
+    value: UPPER_CASE
+  - key:   readability-identifier-naming.ClassConstantPrefix
+    value: ''
+  - key:   readability-identifier-naming.ConstexprVariableCase
+    value: UPPER_CASE
+  - key:   readability-identifier-naming.GlobalConstantCase
+    value: UPPER_CASE
+  - key:   readability-identifier-naming.EnumConstantCase
+    value: UPPER_CASE
+  - key:   readability-identifier-naming.EnumCase
+    value: CamelCase
+  - key:   readability-identifier-naming.FunctionCase
+    value: camelBack
+  - key:   readability-identifier-naming.MemberCase
+    value: lower_case
+  - key:   readability-identifier-naming.MemberPrefix
+    value: m_
+  - key:   readability-identifier-naming.ParameterCase
+    value: lower_case
+  - key:   readability-identifier-naming.ParameterPrefix
+    value: the_
+  - key:   readability-identifier-naming.UnionCase
+    value: CamelCase
+  - key:   readability-identifier-naming.VariableCase
+    value: lower_case
+
+HeaderFilter: '(?!third_party)'
+
+WarningsAsErrors: '*'
