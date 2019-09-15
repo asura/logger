@@ -8,6 +8,7 @@ add_executable(
   Tester
   Tester.cpp
   LoggerTest.cpp
+  SpdlogTest.cpp
 )
 
 target_link_libraries(
