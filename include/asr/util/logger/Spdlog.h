@@ -12,7 +12,7 @@ namespace util
 namespace logger
 {
 /// @brief spdlogを用いてログ出力する
-/// @detail 色付きstderr出力 および syslog出力を行なう。
+/// @details 色付きstderr出力 および syslog出力を行なう。
 /// syslogにはwarnレベル以上のログのみ出力する。
 /// stderrには、デバッグ版ではdebugレベル以上、リリース版ではinfoレベル以上のログを出力する。
 class Spdlog : public ILoggingImpl
