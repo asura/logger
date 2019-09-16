@@ -1,7 +1,28 @@
 sudo: false
+
 language: cpp
+
+branches:
+  only:
+    - master
+
+addons:
+  apt:
+    packages:
+      - doxygen
+
 os:
   - linux
+
 script:
   - cd $TRAVIS_BUILD_DIR && mkdir build && cd build
   - cmake .. -DCMAKE_BUILD_TYPE=Debug && make && ./test/Tester
+  - doxygen docs/Doxyfile
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: build/docs/html
+  github_token: $GH_REPO_TOKEN
+  on:
+    branch: master
