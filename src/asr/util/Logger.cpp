@@ -1,6 +1,6 @@
 #include "asr/util/Logger.h"
 
-#include "asr/util/logger/ILoggingImpl.h"
+#include "asr/util/logger/Spdlog.h"
 
 #include <sstream>
 
@@ -11,6 +11,10 @@ namespace util
 Logger::Logger(std::unique_ptr<logger::ILoggingImpl>&& the_impl)
     : m_impl(std::move(the_impl))
 {
+    if (!m_impl)
+    {
+        throw std::runtime_error("LogginImpl was nullptr");
+    }
 }
 
 void Logger::output(
@@ -32,12 +36,13 @@ void Logger::output(
     m_impl->output(the_log_level, oss.str());
 }
 
-#if 0
-Logger& theLogger()
+Logger& theLogger(
+    const std::string& the_ident)
 {
-    static Logger logger;
+    static Logger logger(
+        std::unique_ptr<asr::util::logger::ILoggingImpl>(
+            new asr::util::logger::Spdlog(the_ident)));
     return logger;
 }
-#endif
 }  // namespace util
 }  // namespace asr

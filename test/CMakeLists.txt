@@ -7,6 +7,8 @@ include_directories(
 add_executable(
   Tester
   Tester.cpp
+  CErrRedirecter.cpp
+  CErrRedirecterTest.cpp
   LoggerTest.cpp
   SpdlogTest.cpp
 )
