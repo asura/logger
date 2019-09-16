@@ -10,6 +10,7 @@ addons:
   apt:
     packages:
       - doxygen
+      - graphviz
 
 os:
   - linux
