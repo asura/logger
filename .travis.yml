@@ -9,6 +9,10 @@ branches:
 os:
   - linux
 
+env:
+  global:
+    secure: "Jo0Yx6pNQthCo15e4rxl8pWIGP3+BAvRMYn1kerklcLdkRx0PPt8bpEr9N42IkGq660RMLTsdtmMEoVT/Soo2o3gGeeFRW2k8gZQfawpM9P//nwsBtpdUGoutJz7gs/Oq1cVtWNAMcSBLpPbF6mM8uxV6XDv6ctuLcOPD3MclXNE9Lj/9xYFon4X3p7gTvIyadCbkLzaAB31UkfWYh+6jVSWAg0nI77ndYnP5qLOrLuBRlakAZeFvl9bUem0QeNN78MJ7t8JCs2rMvnUKEsNvu6vUoVhcdtlSTN6ofYhmURwZQjeicHvxUu6wV5QwFLOVQtOK0VIBGpqHnzkxTO6Z1L1YTER60a/9q3QfwhUOJvzxMciAu70jLodc03nq9lyV97/6RZY/DXmYAy+x1hTBbEx1TYL75DvTvfn5lOSjEDdX/+mdJLu+x45pgIVYQ1w9ruYoN9HwmvnwwspXic/GuEXSD3Qo59k1fAp7amjsjJvtJrlCbTbMT99pwdvNt9kjD8kxH0BEqQG1ogv4ofJuExDr2Kr+xqOqkHo2Z2gci2k8SWnuIj2dzuW8YtC8+mOy0kzHN5KhrKO3wopiC5YBTMtzfpZtGZp17qEbIKxPgqHlddW65IYc26SYoGEZveqcStC40BlYykWwOQ1U6rGSXE8mQh9fCfDllhu2U7SJiw="
+
 addons:
   apt:
     packages:
@@ -32,7 +36,7 @@ script:
   - cmake .. -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE=ON && make && make test
 
 after_success:
-  - cd .. && coveralls -t TFLloF4BvP6D6V3g3sKWZnYOsnTQ91nbp
+  - cd .. && coveralls -e test -e third_party --gcov-options '\-lp'
   - cd build && doxygen docs/Doxyfile
 
 deploy:
