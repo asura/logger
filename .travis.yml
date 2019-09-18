@@ -32,7 +32,7 @@ script:
   - cmake .. -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE=ON && make && make test
 
 after_success:
-  - cd .. && coveralls -r build
+  - cd .. && coveralls -t TFLloF4BvP6D6V3g3sKWZnYOsnTQ91nbp
   - cd build && doxygen docs/Doxyfile
 
 deploy:
