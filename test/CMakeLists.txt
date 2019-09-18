@@ -14,7 +14,6 @@ add_executable(
 )
 
 if (COVERAGE)
-    target_compile_options(Tester PRIVATE --coverage)
     target_link_options(Tester PRIVATE --coverage)
 endif()
 

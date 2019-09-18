@@ -8,6 +8,11 @@ add_library(
     asr/util/logger/Spdlog.cpp
 )
 
+if (COVERAGE)
+    target_compile_options(asr_util_logger PRIVATE --coverage)
+    target_link_options(asr_util_logger PRIVATE --coverage)
+endif()
+
 target_link_libraries(
     asr_util_logger
     spdlog::spdlog
