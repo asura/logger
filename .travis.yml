@@ -32,8 +32,8 @@ script:
   - cmake .. -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE=ON && make && make test
 
 after_success:
-  - coveralls -e test -e third_party
-  - doxygen docs/Doxyfile
+  - cd .. && coveralls -r build -e build/test -e build/third_party
+  - cd build && doxygen docs/Doxyfile
 
 deploy:
   provider: pages
