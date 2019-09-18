@@ -13,6 +13,11 @@ add_executable(
   SpdlogTest.cpp
 )
 
+if (COVERAGE)
+    target_compile_options(Tester PRIVATE --coverage)
+    target_link_options(Tester PRIVATE --coverage)
+endif()
+
 target_link_libraries(
   Tester
   Catch2::Catch2

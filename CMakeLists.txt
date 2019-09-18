@@ -35,6 +35,9 @@ set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-header-filter=${CMAKE_SOURCE_DIR}/include"
 # CTest有効化
 enable_testing()
 
+# テストカバレッジ : デフォルトはOFF
+SET(COVERAGE OFF CACHE BOOL "Coverage")
+
 #######################################
 # GTest無効化
 add_definitions(-DINSTALL_GTEST=OFF)
