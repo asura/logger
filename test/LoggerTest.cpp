@@ -230,9 +230,10 @@ TEST_CASE(
     "theLogger",
     "[asr][asr::util][Logger]")
 {
-    auto& logger = asr::util::theLogger();
+    auto& logger1 = asr::util::theLogger();
+    auto& logger2 = asr::util::theLogger();
 
-    SUCCEED();
+    REQUIRE(&logger1 == &logger2);
 }
 
 // theLoggerからの出力テストは実施しない。

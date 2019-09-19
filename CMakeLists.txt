@@ -24,6 +24,25 @@ else()
   message(FATAL_ERROR "変数CMAKE_BUILD_TYPEが定義されていません")
 endif()
 
+#######################################
+# コンパイラに応じた警告設定
+if(MSVC)
+  add_compile_options(/W4 /WX)
+else()
+  add_compile_options(
+    -Wall -Wextra
+    -Wnon-virtual-dtor   # warn the user if a class with virtual functions has a non-virtual destructor.
+                         # This helps catch hard to track down memory errors
+    -Wold-style-cast     # warn for c-style casts
+    -Wcast-align         # warn for potential performance problem casts
+    -Wunused             # warn on anything being unused
+    -Woverloaded-virtual # warn if you overload (not override) a virtual function
+    -Wpedantic           # warn if non-standard C++ is used
+    -Wconversion         # warn on type conversions that may lose data
+    -Werror              # 警告をエラーとして扱う
+  )
+endif()
+
 # ビルドコマンドを出力 (要 CMake 2.8.5)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 

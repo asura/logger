@@ -19,8 +19,8 @@ public:
     CErrRedirecter();
     ~CErrRedirecter();
 
-    const char* const data() const { return m_buffer; }
-    const size_t size() const { return m_size; }
+    char* data() const { return m_buffer; }
+    size_t size() const { return m_size; }
 
     /// テスト用途
     FILE* fp() const { return m_fp; }

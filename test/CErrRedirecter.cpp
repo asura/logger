@@ -6,9 +6,9 @@
 
 CErrRedirecter::CErrRedirecter()
     : m_locker(m_mutex)
+    , m_fp(open_memstream(&m_buffer, &m_size))
     , m_buffer(nullptr)
     , m_size(0)
-    , m_fp(open_memstream(&m_buffer, &m_size))
     , m_old(stderr)
 {
     if (!m_fp)
