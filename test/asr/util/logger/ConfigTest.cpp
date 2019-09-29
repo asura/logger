@@ -49,8 +49,10 @@ TEST_CASE(
            << "  sinks:" << std::endl
            << "    - type: stderr_color_sink_mt" << std::endl
            << "      level: debug" << std::endl
+           << "      pattern: AbCd" << std::endl
            << "    - type: syslog_sink_mt" << std::endl
-           << "      level: warn" << std::endl;
+           << "      level: warn" << std::endl
+           << "      ident: IDENT" << std::endl;
 
         WHEN("Configを構築")
         {
@@ -71,9 +73,15 @@ TEST_CASE(
 
                 CHECK(spdlog.sinks[0].type == "stderr_color_sink_mt");
                 CHECK(spdlog.sinks[0].level == "debug");
+                REQUIRE(spdlog.sinks[0].pattern.get() != nullptr);
+                CHECK(*spdlog.sinks[0].pattern == "AbCd");
+                REQUIRE(spdlog.sinks[0].ident.get() == nullptr);
 
                 CHECK(spdlog.sinks[1].type == "syslog_sink_mt");
                 CHECK(spdlog.sinks[1].level == "warn");
+                REQUIRE(spdlog.sinks[1].pattern.get() == nullptr);
+                REQUIRE(spdlog.sinks[1].ident.get() != nullptr);
+                CHECK(*spdlog.sinks[1].ident == "IDENT");
             }
         }
     }

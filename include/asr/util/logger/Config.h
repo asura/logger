@@ -23,8 +23,13 @@ public:
         {
             std::string type;
             std::string level;
+            std::unique_ptr<std::string> pattern;
+            std::unique_ptr<std::string> ident;
 
-            void parse(const YAML::Node& node);
+            Sink() = delete;
+            explicit Sink(const YAML::Node& node);
+            Sink(const Sink&) = delete;
+            Sink(Sink&& the_other) = default;
         };
 
         std::string name;
