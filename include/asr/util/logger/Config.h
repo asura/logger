@@ -35,7 +35,8 @@ public:
         std::string name;
         std::vector<Sink> sinks;
 
-        void parse(const YAML::Node& node);
+        Spdlog() = delete;
+        explicit Spdlog(const YAML::Node& node);
     };
 
     struct TopLevel
@@ -43,7 +44,8 @@ public:
         std::string logger;
         std::unique_ptr<Spdlog> spdlog;
 
-        void parse(const YAML::Node& node);
+        TopLevel() = delete;
+        explicit TopLevel(const YAML::Node& node);
     };
 
 private:
@@ -54,9 +56,6 @@ public:
     explicit Config(std::istream& the_istream);
 
     const TopLevel& data() const { return m_data; }
-
-private:
-    void parse(const std::string& the_yaml_string);
 };
 }  // namespace logger
 }  // namespace util

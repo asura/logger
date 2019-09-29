@@ -10,45 +10,21 @@ namespace util
 namespace logger
 {
 Config::Config(std::istream& the_istream)
+    : m_data(
+          YAML::Load(
+              std::string(
+                  (std::istreambuf_iterator<char>(the_istream)),
+                  std::istreambuf_iterator<char>())))
 {
-    try
-    {
-        std::string yaml_string(
-            (std::istreambuf_iterator<char>(the_istream)),
-            std::istreambuf_iterator<char>());
-        parse(yaml_string);
-    }
-    catch (YAML::Exception& e)
-    {
-        std::cerr << e.what() << std::endl;
-        throw;
-    }
-    catch (std::exception& e)
-    {
-        std::cerr << e.what() << std::endl;
-        throw;
-    }
-    catch (...)
-    {
-        std::cerr << "例外発生" << std::endl;
-        throw;
-    }
 }
 
-void Config::parse(const std::string& the_yaml_string)
-{
-    auto node = YAML::Load(the_yaml_string);
-    m_data.parse(node);
-}
-
-void Config::TopLevel::parse(const YAML::Node& the_node)
+Config::TopLevel::TopLevel(const YAML::Node& the_node)
 {
     logger = the_node["logger"].as<std::string>();
 
     if (logger == "spdlog")
     {
-        spdlog.reset(new Config::Spdlog);
-        spdlog->parse(the_node["spdlog"]);
+        spdlog.reset(new Config::Spdlog(the_node["spdlog"]));
     }
     else
     {
@@ -58,7 +34,7 @@ void Config::TopLevel::parse(const YAML::Node& the_node)
     }
 }
 
-void Config::Spdlog::parse(const YAML::Node& the_node)
+Config::Spdlog::Spdlog(const YAML::Node& the_node)
 {
     name = the_node["name"].as<std::string>();
 
