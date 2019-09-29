@@ -1,0 +1,8 @@
+logger: spdlog
+spdlog:
+  name: multi_sink
+  sinks:
+    - type: stderr_color_sink_mt
+      level: debug
+    - type: syslog_sink_mt
+      level: warn

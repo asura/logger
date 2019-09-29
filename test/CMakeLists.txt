@@ -1,6 +1,7 @@
 include_directories(
   ${PROJECT_SOURCE_DIR}/third_party/Catch2-2.9.2/single_include/catch2
   ${PROJECT_SOURCE_DIR}/third_party/googletest-release-1.8.1/googlemock/include
+  ${PROJECT_SOURCE_DIR}/third_party/yaml-cpp-0.6.2/include
   ${PROJECT_SOURCE_DIR}/include
 )
 
@@ -11,6 +12,7 @@ add_executable(
   CErrRedirecterTest.cpp
   LoggerTest.cpp
   SpdlogTest.cpp
+  asr/util/logger/ConfigTest.cpp
 )
 
 target_link_libraries(
