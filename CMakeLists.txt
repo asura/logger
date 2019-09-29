@@ -57,6 +57,20 @@ enable_testing()
 # テストカバレッジ : デフォルトはOFF
 SET(COVERAGE OFF CACHE BOOL "Coverage")
 
+if(COVERAGE)
+  add_custom_target(
+    coverage_init
+    ALL
+    COMMAND find ${PROJECT_BINARY_DIR} -name "*.gcda" -exec rm {} +
+  )
+
+  add_custom_target(
+    coverage
+    COMMAND mkdir -p ${PROJECT_BINARY_DIR}/coverage
+    COMMAND gcovr -s -r ${PROJECT_SOURCE_DIR} --html --html-details -o ${PROJECT_BINARY_DIR}/coverage/coverage.html ${PROJECT_BINARY_DIR}/src
+  )
+endif()
+
 #######################################
 # GTest無効化
 add_definitions(-DINSTALL_GTEST=OFF)
