@@ -4,7 +4,7 @@
 #include <iostream>
 #include <mutex>
 
-/// @brief stderrへの出力を文字列バッファで受けるようリダイレクトさせるクラスa
+/// @brief stderrへの出力を文字列バッファで受けるようリダイレクトさせるクラス
 /// spdlogの標準エラー出力ログクラスの出力をテストするために作成
 class CErrRedirecter
 {
