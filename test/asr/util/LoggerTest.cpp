@@ -1,6 +1,6 @@
 #include "CErrRedirecter.h"
 #include "asr/util/Logger.h"
-#include "asr/util/logger/ILoggingImpl.h"
+#include "asr/util/logger/ILogger.h"
 #include "asr/util/logger/Spdlog.h"
 
 #include <gmock/gmock.h>
@@ -13,7 +13,7 @@ namespace asr
 {
 namespace util
 {
-class LoggingMock : public logger::ILoggingImpl
+class LoggingMock : public logger::ILogger
 {
 public:
     MOCK_METHOD2(output, void(const Logger::Level, const std::string&));
@@ -34,11 +34,11 @@ TEST_CASE(
     "Loggerを構築し、outputを呼ぶ",
     "[asr][asr::util][Logger]")
 {
-    // ILoggingImplから派生させたモッククラスをインスタンス化
+    // ILoggerから派生させたモッククラスをインスタンス化
     auto mock = new asr::util::LoggingMock;
 
     // モッククラスにて依存性注入
-    std::unique_ptr<asr::util::logger::ILoggingImpl> doc(mock);
+    std::unique_ptr<asr::util::logger::ILogger> doc(mock);
     asr::util::Logger sut(std::move(doc));
 
     // モックの挙動を定義
@@ -71,7 +71,7 @@ TEST_CASE(
         CHECK(redirect.size() == 0);
 
         asr::util::Logger sut(
-            std::unique_ptr<asr::util::logger::ILoggingImpl>(
+            std::unique_ptr<asr::util::logger::ILogger>(
                 new asr::util::logger::Spdlog("test")));
 
         WHEN("TRCレベルのログ出力")

@@ -8,7 +8,7 @@ namespace asr
 {
 namespace util
 {
-Logger::Logger(std::unique_ptr<logger::ILoggingImpl>&& the_impl)
+Logger::Logger(std::unique_ptr<logger::ILogger>&& the_impl)
     : m_impl(std::move(the_impl))
 {
     if (!m_impl)
@@ -40,7 +40,7 @@ Logger& theLogger(
     const std::string& the_ident)
 {
     static Logger logger(
-        std::unique_ptr<asr::util::logger::ILoggingImpl>(
+        std::unique_ptr<asr::util::logger::ILogger>(
             new asr::util::logger::Spdlog(the_ident)));
     return logger;
 }

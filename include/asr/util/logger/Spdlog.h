@@ -1,7 +1,7 @@
 #ifndef ASR_UTIL_LOGGER_SPDLOG_H
 #define ASR_UTIL_LOGGER_SPDLOG_H
 
-#include "asr/util/logger/ILoggingImpl.h"
+#include "asr/util/logger/ILogger.h"
 
 #include <spdlog/spdlog.h>
 
@@ -15,7 +15,7 @@ namespace logger
 /// @details 色付きstderr出力 および syslog出力を行なう。
 /// syslogにはwarnレベル以上のログのみ出力する。
 /// stderrには、デバッグ版ではdebugレベル以上、リリース版ではinfoレベル以上のログを出力する。
-class Spdlog : public ILoggingImpl
+class Spdlog : public ILogger
 {
     std::shared_ptr<spdlog::logger> m_old_logger;
 

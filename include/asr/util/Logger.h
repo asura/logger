@@ -11,7 +11,7 @@ namespace util
 {
 namespace logger
 {
-struct ILoggingImpl;
+struct ILogger;
 }  // namespace logger
 
 /// @brief ログ出力
@@ -39,12 +39,12 @@ public:
     };
 
 private:
-    std::unique_ptr<logger::ILoggingImpl> m_impl;
+    std::unique_ptr<logger::ILogger> m_impl;
 
 public:
     Logger() = delete;
 
-    explicit Logger(std::unique_ptr<logger::ILoggingImpl>&& the_impl);
+    explicit Logger(std::unique_ptr<logger::ILogger>&& the_impl);
 
     /// @brief ログ出力
     /// @param [in] the_log_level 本ログのログレベル
