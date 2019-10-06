@@ -32,6 +32,7 @@ public:
             Sink(Sink&& the_other) = default;
         };
 
+        std::string level;
         std::string name;
         std::vector<Sink> sinks;
 

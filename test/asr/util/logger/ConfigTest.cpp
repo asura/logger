@@ -1,7 +1,5 @@
+#include "RuntimeErrorMatcher.h"
 #include "asr/util/logger/Config.h"
-
-#include <catch2/catch.hpp>
-#include <sstream>
 
 TEST_CASE(
     "Config",
@@ -12,6 +10,7 @@ TEST_CASE(
         std::stringstream ss;
         ss << "logger: spdlog" << std::endl
            << "spdlog:" << std::endl
+           << "  level: warn" << std::endl
            << "  name: single_sink" << std::endl
            << "  sinks:" << std::endl
            << "    - type: stderr_color_sink_mt" << std::endl
@@ -30,6 +29,8 @@ TEST_CASE(
                 REQUIRE(top_level.spdlog.get() != nullptr);
                 const auto& spdlog = *top_level.spdlog;
 
+                CHECK(spdlog.level == "warn");
+
                 CHECK(spdlog.name == "single_sink");
 
                 REQUIRE(spdlog.sinks.size() == 1);
@@ -45,6 +46,7 @@ TEST_CASE(
         std::stringstream ss;
         ss << "logger: spdlog" << std::endl
            << "spdlog:" << std::endl
+           << "  level: warn" << std::endl
            << "  name: multi_sink" << std::endl
            << "  sinks:" << std::endl
            << "    - type: stderr_color_sink_mt" << std::endl
@@ -66,6 +68,8 @@ TEST_CASE(
 
                 REQUIRE(top_level.spdlog.get() != nullptr);
                 const auto& spdlog = *top_level.spdlog;
+
+                CHECK(spdlog.level == "warn");
 
                 CHECK(spdlog.name == "multi_sink");
 
@@ -91,15 +95,17 @@ TEST_CASE(
         std::stringstream ss;
         ss << "logger: spdlog" << std::endl
            << "spdlog:" << std::endl
+           << "  level: warn" << std::endl
            << "  name: single_sink" << std::endl;
 
         WHEN("Configを構築")
         {
             THEN("例外発生")
             {
-                REQUIRE_THROWS_AS(
+                REQUIRE_THROWS_MATCHES(
                     asr::util::logger::Config(ss),
-                    std::runtime_error);
+                    std::runtime_error,
+                    RuntimeErrorMatcher("spdlog.sinks指定なし"));
             }
         }
     }
@@ -108,15 +114,37 @@ TEST_CASE(
     {
         std::stringstream ss;
         ss << "logger: spdlog" << std::endl
-           << "spdlog:" << std::endl;
+           << "spdlog:" << std::endl
+           << "  level: warn" << std::endl
+           << "  aaa: bbb";
 
         WHEN("Configを構築")
         {
             THEN("例外発生")
             {
-                REQUIRE_THROWS_AS(
+                REQUIRE_THROWS_MATCHES(
                     asr::util::logger::Config(ss),
-                    YAML::InvalidNode);
+                    std::runtime_error,
+                    RuntimeErrorMatcher("spdlog.name指定なし"));
+            }
+        }
+    }
+
+    SECTION("正常系 - spdlog指定 - level指定なし")
+    {
+        std::stringstream ss;
+        ss << "logger: spdlog" << std::endl
+           << "spdlog:" << std::endl
+           << "  aaa: bbb";
+
+        WHEN("Configを構築")
+        {
+            THEN("例外発生")
+            {
+                REQUIRE_THROWS_MATCHES(
+                    asr::util::logger::Config(ss),
+                    std::runtime_error,
+                    RuntimeErrorMatcher("spdlog.level指定なし"));
             }
         }
     }
@@ -130,9 +158,10 @@ TEST_CASE(
         {
             THEN("例外発生")
             {
-                REQUIRE_THROWS_AS(
+                REQUIRE_THROWS_MATCHES(
                     asr::util::logger::Config(ss),
-                    YAML::InvalidNode);
+                    std::runtime_error,
+                    RuntimeErrorMatcher("spdlog指定なし"));
             }
         }
     }

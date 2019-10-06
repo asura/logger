@@ -20,11 +20,28 @@ Config::Config(std::istream& the_istream)
 
 Config::TopLevel::TopLevel(const YAML::Node& the_node)
 {
+    if (!the_node.IsMap())
+    {
+        throw std::runtime_error("トップレベルノードが非オブジェクト");
+    }
+
+    const auto& logger_node = the_node["logger"];
+    if (!logger_node.IsDefined())
+    {
+        throw std::runtime_error("logger指定なし");
+    }
+
     logger = the_node["logger"].as<std::string>();
 
     if (logger == "spdlog")
     {
-        spdlog.reset(new Config::Spdlog(the_node["spdlog"]));
+        const auto& spdlog_node = the_node["spdlog"];
+        if (!spdlog_node.IsDefined())
+        {
+            throw std::runtime_error("spdlog指定なし");
+        }
+
+        spdlog.reset(new Config::Spdlog(spdlog_node));
     }
     else
     {
@@ -36,12 +53,36 @@ Config::TopLevel::TopLevel(const YAML::Node& the_node)
 
 Config::Spdlog::Spdlog(const YAML::Node& the_node)
 {
-    name = the_node["name"].as<std::string>();
+    if (!the_node.IsMap())
+    {
+        throw std::runtime_error("spdlogノードが非オブジェクト");
+    }
+
+    const auto& level_node = the_node["level"];
+    if (!level_node.IsDefined())
+    {
+        throw std::runtime_error("spdlog.level指定なし");
+    }
+
+    level = level_node.as<std::string>();
+
+    const auto& name_node = the_node["name"];
+    if (!name_node.IsDefined())
+    {
+        throw std::runtime_error("spdlog.name指定なし");
+    }
+
+    name = name_node.as<std::string>();
 
     const YAML::Node& node_sinks = the_node["sinks"];
     if (!node_sinks.IsDefined())
     {
-        throw std::runtime_error("sinks指定なし");
+        throw std::runtime_error("spdlog.sinks指定なし");
+    }
+
+    if (!node_sinks.IsSequence())
+    {
+        throw std::runtime_error("spdlog.sinksノードが非配列");
     }
 
     for (const auto& node_sink : node_sinks)
@@ -54,22 +95,39 @@ Config::Spdlog::Spdlog(const YAML::Node& the_node)
 
 Config::Spdlog::Sink::Sink(const YAML::Node& the_node)
 {
-    type = the_node["type"].as<std::string>();
-
-    level = the_node["level"].as<std::string>();
-
-    const YAML::Node& node_pattern = the_node["pattern"];
-    if (node_pattern.IsDefined())
+    if (!the_node.IsMap())
     {
-        pattern.reset(new std::string);
-        *pattern = node_pattern.as<std::string>();
+        throw std::runtime_error("spdlog.sinks[]ノードが非オブジェクト");
     }
 
-    const YAML::Node& node_ident = the_node["ident"];
-    if (node_ident.IsDefined())
+    const auto& type_node = the_node["type"];
+    if (!type_node.IsDefined())
+    {
+        throw std::runtime_error("spdlog.sinks.type指定なし");
+    }
+
+    type = type_node.as<std::string>();
+
+    const auto& level_node = the_node["level"];
+    if (!level_node.IsDefined())
+    {
+        throw std::runtime_error("spdlog.sinks.level指定なし");
+    }
+
+    level = level_node.as<std::string>();
+
+    const auto& pattern_node = the_node["pattern"];
+    if (pattern_node.IsDefined())
+    {
+        pattern.reset(new std::string);
+        *pattern = pattern_node.as<std::string>();
+    }
+
+    const YAML::Node& ident_node = the_node["ident"];
+    if (ident_node.IsDefined())
     {
         ident.reset(new std::string);
-        *ident = node_ident.as<std::string>();
+        *ident = ident_node.as<std::string>();
     }
 }
 

@@ -13,6 +13,7 @@ add_executable(
   CErrRedirecterTest.cpp
   asr/util/LoggerTest.cpp
   asr/util/logger/ConfigTest.cpp
+  asr/util/logger/LoggerFactoryTest.cpp
   asr/util/logger/SpdlogTest.cpp
 )
 

@@ -7,6 +7,7 @@ add_library(
     asr_util_logger
     asr/util/Logger.cpp
     asr/util/logger/Config.cpp
+    asr/util/logger/LoggerFactory.cpp
     asr/util/logger/Spdlog.cpp
 )
 

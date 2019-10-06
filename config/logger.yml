@@ -1,5 +1,6 @@
 logger: spdlog
 spdlog:
+  level: warn
   name: multi_sink
   sinks:
     - type: stderr_color_sink_mt
