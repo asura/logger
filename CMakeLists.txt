@@ -25,6 +25,10 @@ else()
 endif()
 
 #######################################
+# 外部パッケージ
+find_package(yaml-cpp REQUIRED)
+
+#######################################
 # コンパイラに応じた警告設定
 if(MSVC)
   add_compile_options(/W4 /WX)
@@ -67,7 +71,6 @@ add_definitions(-DYAML_CPP_BUILD_TOOLS=OFF)
 add_subdirectory(third_party/Catch2-2.9.2)
 add_subdirectory(third_party/googletest-release-1.8.1)
 add_subdirectory(third_party/spdlog-1.3.1)
-add_subdirectory(third_party/yaml-cpp-0.6.2)
 add_subdirectory(docs)
 add_subdirectory(src)
 add_subdirectory(test)

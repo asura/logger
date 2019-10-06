@@ -1,7 +1,6 @@
 include_directories(
     ${PROJECT_SOURCE_DIR}/include
-    ${PROJECT_SOURCE_DIR}/third_party/yaml-cpp-0.6.2/include
-    )
+)
 
 add_library(
     asr_util_logger
