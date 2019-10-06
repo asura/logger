@@ -172,7 +172,7 @@ TEST_CASE(
 
         WHEN("正常系")
         {
-            const auto [level_string, expected_level] = GENERATE(
+            const auto values = GENERATE(
                 table<std::string, spdlog::level::level_enum>(
                     {
                         {"trace", spdlog::level::trace},
@@ -182,6 +182,9 @@ TEST_CASE(
                         {"error", spdlog::level::err},
                         {"critical", spdlog::level::critical},
                     }));
+
+            const auto level_string = std::get<0>(values);
+            const auto expected_level = std::get<1>(values);
 
             sut.set_level(sink, level_string);
 
