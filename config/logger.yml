@@ -1,0 +1,11 @@
+logger: spdlog
+spdlog:
+  level: warn
+  name: multi_sink
+  sinks:
+    - type: stderr_color_sink_mt
+      level: debug
+      pattern: "%L, [%Y-%m-%d %H:%M:%S.%f] %^%v%$"
+    - type: syslog_sink_mt
+      level: warn
+      ident: test

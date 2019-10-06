@@ -1,5 +1,5 @@
-#ifndef ASR_UTIL_LOGGER_ILOGGINGIMPL_H
-#define ASR_UTIL_LOGGER_ILOGGINGIMPL_H
+#ifndef ASR_UTIL_LOGGER_ILOGGER_H
+#define ASR_UTIL_LOGGER_ILOGGER_H
 
 #include "asr/util/Logger.h"
 
@@ -10,16 +10,16 @@ namespace util
 namespace logger
 {
 /// ログ出力の詳細を担うインタフェース
-struct ILoggingImpl
+struct ILogger
 {
-    ILoggingImpl() = default;
-    ILoggingImpl(const ILoggingImpl&) = delete;
-    ILoggingImpl(ILoggingImpl&&) = delete;
+    ILogger() = default;
+    ILogger(const ILogger&) = delete;
+    ILogger(ILogger&&) = delete;
 
-    virtual ~ILoggingImpl() = default;
+    virtual ~ILogger() = default;
 
-    ILoggingImpl& operator=(const ILoggingImpl&) = delete;
-    ILoggingImpl& operator=(ILoggingImpl&&) & = delete;
+    ILogger& operator=(const ILogger&) = delete;
+    ILogger& operator=(ILogger&&) & = delete;
 
     /// @brief ログ出力
     /// @param [in] the_log_level 本ログのログレベル
@@ -32,4 +32,4 @@ struct ILoggingImpl
 }  // namespace util
 }  // namespace asr
 
-#endif  // ASR_UTIL_LOGGER_ILOGGINGIMPL_H
+#endif  // ASR_UTIL_LOGGER_ILOGGER_H

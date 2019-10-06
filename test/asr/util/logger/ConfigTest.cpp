@@ -1,0 +1,168 @@
+#include "RuntimeErrorMatcher.h"
+#include "asr/util/logger/Config.h"
+
+TEST_CASE(
+    "Config",
+    "[asr::util::logger::Config]")
+{
+    SECTION("正常系 - spdlog指定 - 単一sink指定")
+    {
+        std::stringstream ss;
+        ss << "logger: spdlog" << std::endl
+           << "spdlog:" << std::endl
+           << "  level: warn" << std::endl
+           << "  name: single_sink" << std::endl
+           << "  sinks:" << std::endl
+           << "    - type: stderr_color_sink_mt" << std::endl
+           << "      level: debug" << std::endl;
+
+        WHEN("Configを構築")
+        {
+            asr::util::logger::Config sut(ss);
+
+            THEN("設定値を正常にパースできている")
+            {
+                const auto& top_level = sut.data();
+
+                CHECK(top_level.logger == "spdlog");
+
+                REQUIRE(top_level.spdlog.get() != nullptr);
+                const auto& spdlog = *top_level.spdlog;
+
+                CHECK(spdlog.level == "warn");
+
+                CHECK(spdlog.name == "single_sink");
+
+                REQUIRE(spdlog.sinks.size() == 1);
+
+                CHECK(spdlog.sinks[0].type == "stderr_color_sink_mt");
+                CHECK(spdlog.sinks[0].level == "debug");
+            }
+        }
+    }
+
+    SECTION("正常系 - spdlog指定 - 複数sink指定")
+    {
+        std::stringstream ss;
+        ss << "logger: spdlog" << std::endl
+           << "spdlog:" << std::endl
+           << "  level: warn" << std::endl
+           << "  name: multi_sink" << std::endl
+           << "  sinks:" << std::endl
+           << "    - type: stderr_color_sink_mt" << std::endl
+           << "      level: debug" << std::endl
+           << "      pattern: AbCd" << std::endl
+           << "    - type: syslog_sink_mt" << std::endl
+           << "      level: warn" << std::endl
+           << "      ident: IDENT" << std::endl;
+
+        WHEN("Configを構築")
+        {
+            asr::util::logger::Config sut(ss);
+
+            THEN("設定値を正常にパースできている")
+            {
+                const auto& top_level = sut.data();
+
+                CHECK(top_level.logger == "spdlog");
+
+                REQUIRE(top_level.spdlog.get() != nullptr);
+                const auto& spdlog = *top_level.spdlog;
+
+                CHECK(spdlog.level == "warn");
+
+                CHECK(spdlog.name == "multi_sink");
+
+                REQUIRE(spdlog.sinks.size() == 2);
+
+                CHECK(spdlog.sinks[0].type == "stderr_color_sink_mt");
+                CHECK(spdlog.sinks[0].level == "debug");
+                REQUIRE(spdlog.sinks[0].pattern.get() != nullptr);
+                CHECK(*spdlog.sinks[0].pattern == "AbCd");
+                REQUIRE(spdlog.sinks[0].ident.get() == nullptr);
+
+                CHECK(spdlog.sinks[1].type == "syslog_sink_mt");
+                CHECK(spdlog.sinks[1].level == "warn");
+                REQUIRE(spdlog.sinks[1].pattern.get() == nullptr);
+                REQUIRE(spdlog.sinks[1].ident.get() != nullptr);
+                CHECK(*spdlog.sinks[1].ident == "IDENT");
+            }
+        }
+    }
+
+    SECTION("正常系 - spdlog指定 - sink指定なし")
+    {
+        std::stringstream ss;
+        ss << "logger: spdlog" << std::endl
+           << "spdlog:" << std::endl
+           << "  level: warn" << std::endl
+           << "  name: single_sink" << std::endl;
+
+        WHEN("Configを構築")
+        {
+            THEN("例外発生")
+            {
+                REQUIRE_THROWS_MATCHES(
+                    asr::util::logger::Config(ss),
+                    std::runtime_error,
+                    RuntimeErrorMatcher("spdlog.sinks指定なし"));
+            }
+        }
+    }
+
+    SECTION("正常系 - spdlog指定 - name指定なし")
+    {
+        std::stringstream ss;
+        ss << "logger: spdlog" << std::endl
+           << "spdlog:" << std::endl
+           << "  level: warn" << std::endl
+           << "  aaa: bbb";
+
+        WHEN("Configを構築")
+        {
+            THEN("例外発生")
+            {
+                REQUIRE_THROWS_MATCHES(
+                    asr::util::logger::Config(ss),
+                    std::runtime_error,
+                    RuntimeErrorMatcher("spdlog.name指定なし"));
+            }
+        }
+    }
+
+    SECTION("正常系 - spdlog指定 - level指定なし")
+    {
+        std::stringstream ss;
+        ss << "logger: spdlog" << std::endl
+           << "spdlog:" << std::endl
+           << "  aaa: bbb";
+
+        WHEN("Configを構築")
+        {
+            THEN("例外発生")
+            {
+                REQUIRE_THROWS_MATCHES(
+                    asr::util::logger::Config(ss),
+                    std::runtime_error,
+                    RuntimeErrorMatcher("spdlog.level指定なし"));
+            }
+        }
+    }
+
+    SECTION("正常系 - spdlog指定 - spdlog指定なし")
+    {
+        std::stringstream ss;
+        ss << "logger: spdlog" << std::endl;
+
+        WHEN("Configを構築")
+        {
+            THEN("例外発生")
+            {
+                REQUIRE_THROWS_MATCHES(
+                    asr::util::logger::Config(ss),
+                    std::runtime_error,
+                    RuntimeErrorMatcher("spdlog指定なし"));
+            }
+        }
+    }
+}
