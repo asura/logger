@@ -18,6 +18,7 @@ addons:
     packages:
       - doxygen
       - graphviz
+      - yaml-cpp
 
 install:
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
