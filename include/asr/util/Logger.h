@@ -30,12 +30,12 @@ public:
     /// ログレベル
     enum Level
     {
-        TRC,  ///< 詳細な調査用。プロダクションコードには残さないこと。
+        VBS,  ///< 詳細な調査用。プロダクションコードには残さないこと。
         DBG,  ///< デバッグ用途
         INF,  ///< 正常時、ユーザ or 運用担当者に通知したいケース
         WRN,  ///< 処理は継続して良いが、後後のため通知するケース
         ERR,  ///< 異常発生時
-        CRT   ///< 実行を即停止せざるを得ないケース
+        FTL   ///< 実行を即停止せざるを得ないケース
     };
 
 private:
@@ -60,7 +60,7 @@ Logger& theLogger(const std::string& the_ident = "");
 }  // namespace asr
 
 /// トレースレベルのログ
-#define ASR_UTIL_LOGT(the_message) asr::util::theLogger().output(asr::util::Logger::TRC, __FILE__, __LINE__, __func__, the_message)
+#define ASR_UTIL_LOGV(the_message) asr::util::theLogger().output(asr::util::Logger::VBS, __FILE__, __LINE__, __func__, the_message)
 
 /// デバッグレベルのログ
 #define ASR_UTIL_LOGD(the_message) asr::util::theLogger().output(asr::util::Logger::DBG, __FILE__, __LINE__, __func__, the_message)
@@ -75,6 +75,6 @@ Logger& theLogger(const std::string& the_ident = "");
 #define ASR_UTIL_LOGE(the_message) asr::util::theLogger().output(asr::util::Logger::ERR, __FILE__, __LINE__, __func__, the_message)
 
 /// クリティカルレベルのログ
-#define ASR_UTIL_LOGC(the_message) asr::util::theLogger().output(asr::util::Logger::CRT, __FILE__, __LINE__, __func__, the_message)
+#define ASR_UTIL_LOGF(the_message) asr::util::theLogger().output(asr::util::Logger::FTL, __FILE__, __LINE__, __func__, the_message)
 
 #endif  // ASR_UTIL_LOGGER_H

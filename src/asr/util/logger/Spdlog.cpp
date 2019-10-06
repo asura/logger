@@ -44,7 +44,7 @@ void Spdlog::output(
 {
     switch (the_log_level)
     {
-    case Logger::Level::TRC:
+    case Logger::Level::VBS:
         spdlog::trace(the_log_message);
         break;
     case Logger::Level::DBG:
@@ -59,7 +59,7 @@ void Spdlog::output(
     case Logger::Level::ERR:
         spdlog::error(the_log_message);
         break;
-    case Logger::Level::CRT:
+    case Logger::Level::FTL:
         spdlog::critical(the_log_message);
         break;
     }

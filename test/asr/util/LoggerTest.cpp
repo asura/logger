@@ -74,10 +74,10 @@ TEST_CASE(
             std::unique_ptr<asr::util::logger::ILogger>(
                 new asr::util::logger::Spdlog("test")));
 
-        WHEN("TRCレベルのログ出力")
+        WHEN("VBSレベルのログ出力")
         {
             sut.output(
-                asr::util::Logger::TRC,
+                asr::util::Logger::VBS,
                 __FILE__,
                 __LINE__,
                 __func__,
@@ -201,10 +201,10 @@ TEST_CASE(
             }
         }
 
-        WHEN("CRTレベルのログ出力")
+        WHEN("FTLレベルのログ出力")
         {
             sut.output(
-                asr::util::Logger::CRT,
+                asr::util::Logger::FTL,
                 __FILE__,
                 __LINE__,
                 __func__,

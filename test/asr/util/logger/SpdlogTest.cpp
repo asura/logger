@@ -111,9 +111,9 @@ TEST_CASE(
             }
         }
 
-        WHEN("全ケースで出力されるCRTレベルでログ出力")
+        WHEN("全ケースで出力されるFTLレベルでログ出力")
         {
-            sut.output(asr::util::Logger::CRT, "メッセージ文字列");
+            sut.output(asr::util::Logger::FTL, "メッセージ文字列");
 
             THEN("期待通りの文字列が出力されている")
             {
