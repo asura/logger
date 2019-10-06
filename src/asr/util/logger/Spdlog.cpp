@@ -11,8 +11,7 @@ namespace util
 {
 namespace logger
 {
-Spdlog::Spdlog(
-    const std::string& the_category_name)
+Spdlog::Spdlog()
     : m_old_logger(spdlog::default_logger())
 {
     auto console_sink = std::make_shared<spdlog::sinks::stderr_color_sink_mt>();
@@ -24,15 +23,10 @@ Spdlog::Spdlog(
     // ログレベル(1文字)、日時、メッセージ
     console_sink->set_pattern("%L, [%Y-%m-%d %H:%M:%S.%f] %^%v%$");
 
-    auto syslog_sink = std::make_shared<spdlog::sinks::syslog_sink_mt>(the_category_name);
-    syslog_sink->set_level(spdlog::level::warn);
-
     spdlog::set_default_logger(
         std::make_shared<spdlog::logger>(
-            "multi_sink",
-            spdlog::sinks_init_list(
-                {console_sink,
-                 syslog_sink})));
+            "single_sink",
+            console_sink));
 }
 
 Spdlog::Spdlog(

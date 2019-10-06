@@ -55,7 +55,7 @@ public:
                 const std::string& the_message);
 };
 
-Logger& theLogger(const std::string& the_ident = "");
+Logger& theLogger();
 }  // namespace util
 }  // namespace asr
 

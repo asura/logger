@@ -18,7 +18,7 @@ TEST_CASE(
 {
     WHEN("Spdlogを構築")
     {
-        asr::util::logger::Spdlog sut("適当なカテゴリ名称文字列を渡します");
+        asr::util::logger::Spdlog sut;
 
         THEN("デフォルトロガーが設定される")
         {
@@ -30,16 +30,16 @@ TEST_CASE(
                 CHECK(logger->level() == spdlog::level::info);
             }
 
-            AND_THEN("名称はmulti_sink")
+            AND_THEN("名称はsingle_sink")
             {
-                CHECK(logger->name() == "multi_sink");
+                CHECK(logger->name() == "single_sink");
             }
 
-            AND_THEN("sinkは2つ設定される")
+            AND_THEN("sinkは1つだけ設定される")
             {
-                REQUIRE(logger->sinks().size() == 2);
+                REQUIRE(logger->sinks().size() == 1);
 
-                AND_THEN("先頭はstderrへの色付きマルチスレッドロガー")
+                AND_THEN("stderrへの色付きマルチスレッドロガー")
                 {
                     auto sink = logger->sinks().front();
                     REQUIRE(sink);
@@ -61,25 +61,6 @@ TEST_CASE(
 
                         // 出力フォーマットを確認したいが
                         // フォーマッター取得メソッドがないので不可
-                    }
-                }
-
-                AND_THEN("2つ目はsyslogへの出力")
-                {
-                    auto sink = logger->sinks().back();
-                    REQUIRE(sink);
-
-                    auto casted = std::dynamic_pointer_cast<
-                        spdlog::sinks::syslog_sink_mt>(
-                        sink);
-                    REQUIRE(casted);
-
-                    AND_THEN("ログ出力レベルはWARN")
-                    {
-                        CHECK(sink->level() == spdlog::level::warn);
-
-                        // identの内容を確認したいが
-                        // 取得メソッドがないので不可
                     }
                 }
             }
@@ -137,7 +118,7 @@ TEST_CASE(
     GIVEN("stderrをリダイレクトし、Spdlog構築")
     {
         CErrRedirecter redirect;
-        asr::util::logger::Spdlog sut("カテゴリ名称");
+        asr::util::logger::Spdlog sut;
 
         WHEN("全ケースで出力されるERRレベルでログ出力")
         {

@@ -72,7 +72,7 @@ TEST_CASE(
 
         asr::util::Logger sut(
             std::unique_ptr<asr::util::logger::ILogger>(
-                new asr::util::logger::Spdlog("test")));
+                new asr::util::logger::Spdlog()));
 
         WHEN("VBSレベルのログ出力")
         {

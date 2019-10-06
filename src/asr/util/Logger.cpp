@@ -36,12 +36,11 @@ void Logger::output(
     m_impl->output(the_log_level, oss.str());
 }
 
-Logger& theLogger(
-    const std::string& the_ident)
+Logger& theLogger()
 {
     static Logger logger(
         std::unique_ptr<asr::util::logger::ILogger>(
-            new asr::util::logger::Spdlog(the_ident)));
+            new asr::util::logger::Spdlog()));
     return logger;
 }
 }  // namespace util

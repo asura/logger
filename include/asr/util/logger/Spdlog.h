@@ -37,10 +37,7 @@ private:
     std::shared_ptr<Setters> m_setters;
 
 public:
-    Spdlog() = delete;
-
-    /// @param [in] the_category_name syslog出力時のカテゴリ名称
-    explicit Spdlog(const std::string& the_category_name);
+    Spdlog();
 
     /// @param [in] the_config 構築用設定
     explicit Spdlog(const Config::Spdlog& the_config, std::shared_ptr<Setters> the_setters = std::make_shared<Setters>());
