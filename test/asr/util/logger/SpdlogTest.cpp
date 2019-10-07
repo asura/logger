@@ -172,26 +172,28 @@ TEST_CASE(
 
         WHEN("正常系")
         {
-            const auto values = GENERATE(
-                table<std::string, spdlog::level::level_enum>(
-                    {
-                        {"trace", spdlog::level::trace},
-                        {"debug", spdlog::level::debug},
-                        {"info", spdlog::level::info},
-                        {"warn", spdlog::level::warn},
-                        {"error", spdlog::level::err},
-                        {"critical", spdlog::level::critical},
-                    }));
+            struct Data
+            {
+                std::string level_string;
+                spdlog::level::level_enum expected_level;
+            };
 
-            const auto level_string = std::get<0>(values);
-            const auto expected_level = std::get<1>(values);
+            const auto value = GENERATE(
+                values<Data>({
+                    {"trace", spdlog::level::trace},
+                    {"debug", spdlog::level::debug},
+                    {"info", spdlog::level::info},
+                    {"warn", spdlog::level::warn},
+                    {"error", spdlog::level::err},
+                    {"critical", spdlog::level::critical},
+                }));
 
-            sut.set_level(sink, level_string);
+            sut.set_level(sink, value.level_string);
 
             THEN("ログレベルが適切に設定される")
             {
-                INFO("level=" << level_string);
-                CHECK(sink.level() == expected_level);
+                INFO("level=" << value.level_string);
+                CHECK(sink.level() == value.expected_level);
             }
         }
 
