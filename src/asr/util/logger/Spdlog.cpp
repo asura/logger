@@ -40,11 +40,10 @@ Spdlog::Spdlog(
     }
 
     const size_t n_sinks = the_config.sinks.size();
+    assert(0 < n_sinks);  // Configの構築には1つ以上のsink指定が必須
 
     switch (n_sinks)
     {
-    case 0:
-        throw std::runtime_error("sink未指定のため構築不可");
     case 1:
         spdlog::set_default_logger(
             std::make_shared<spdlog::logger>(
