@@ -72,7 +72,7 @@ TEST_CASE(
     "Spdlog::Spdlog - Config::Spdlog",
     "[asr][asr::util::logger][Spdlog]")
 {
-    GIVEN("Config::Spdlogを構築")
+    GIVEN("1sinkのConfig::Spdlogを構築")
     {
         std::stringstream ss;
         ss << "level: info" << std::endl
@@ -89,7 +89,7 @@ TEST_CASE(
 
         asr::util::logger::Config::Spdlog spdlog_config(yaml_node);
 
-        WHEN("Spdlogを構築")
+        WHEN("Settersに有効な値を設定してSpdlogを構築")
         {
             auto mock = std::make_shared<asr::util::logger::SpdlogSettersMock>();
             REQUIRE(mock.get() != nullptr);
@@ -107,6 +107,53 @@ TEST_CASE(
             asr::util::logger::Spdlog sut(
                 spdlog_config,
                 std::dynamic_pointer_cast<asr::util::logger::Spdlog::Setters>(mock));
+        }
+
+        WHEN("Settersにnullptrを設定してSpdlogを構築")
+        {
+            THEN("例外発生")
+            {
+                REQUIRE_THROWS_MATCHES(
+                    asr::util::logger::Spdlog(spdlog_config, nullptr),
+                    std::runtime_error,
+                    RuntimeErrorMatcher("Setters指定がnullptr"));
+            };
+        }
+    }
+
+    GIVEN("2sinksのConfig::Spdlogを構築")
+    {
+        std::stringstream ss;
+        ss << "level: info" << std::endl
+           << "name: single_sink" << std::endl
+           << "sinks:" << std::endl
+           << "  - type: stderr_color_sink_mt" << std::endl
+           << "    level: error" << std::endl
+           << "    pattern: AbCd" << std::endl
+           << "  - type: stdout_sink_mt" << std::endl
+           << "    level: warn" << std::endl
+           << "    pattern: eee" << std::endl;
+
+        YAML::Node yaml_node;
+
+        REQUIRE_NOTHROW(yaml_node = YAML::Load(ss.str()));
+
+        asr::util::logger::Config::Spdlog spdlog_config(yaml_node);
+
+        WHEN("Settersに有効な値を設定してSpdlogを構築")
+        {
+            auto mock = std::make_shared<asr::util::logger::SpdlogSettersMock>();
+            REQUIRE(mock.get() != nullptr);
+
+            THEN("例外発生")
+            {
+                REQUIRE_THROWS_MATCHES(
+                    asr::util::logger::Spdlog(
+                        spdlog_config,
+                        std::dynamic_pointer_cast<asr::util::logger::Spdlog::Setters>(mock)),
+                    std::runtime_error,
+                    RuntimeErrorMatcher("複数sinkは未対応"));
+            };
         }
     }
 }
