@@ -5,6 +5,43 @@ TEST_CASE(
     "Config",
     "[asr::util::logger::Config]")
 {
+    SECTION("logger指定なし")
+    {
+        SECTION("別キーあり")
+        {
+            std::stringstream ss;
+            ss << "aaa: bbb" << std::endl;
+
+            WHEN("Configを構築")
+            {
+                THEN("例外発生")
+                {
+                    REQUIRE_THROWS_MATCHES(
+                        asr::util::logger::Config(ss),
+                        std::runtime_error,
+                        RuntimeErrorMatcher("logger指定なし"));
+                }
+            }
+        }
+
+        SECTION("非オブジェクト")
+        {
+            std::stringstream ss;
+            ss << "" << std::endl;
+
+            WHEN("Configを構築")
+            {
+                THEN("例外発生")
+                {
+                    REQUIRE_THROWS_MATCHES(
+                        asr::util::logger::Config(ss),
+                        std::runtime_error,
+                        RuntimeErrorMatcher("トップレベルノードが非オブジェクト"));
+                }
+            }
+        }
+    }
+
     SECTION("spdlog指定")
     {
         SECTION("正常系")
@@ -97,6 +134,93 @@ TEST_CASE(
 
         SECTION("異常系")
         {
+            SECTION("sinkにlevel指定なし")
+            {
+                std::stringstream ss;
+                ss << "logger: spdlog" << std::endl
+                   << "spdlog:" << std::endl
+                   << "  level: warn" << std::endl
+                   << "  name: single_sink" << std::endl
+                   << "  sinks:" << std::endl
+                   << "    - type: stderr_color_sink_mt" << std::endl;
+
+                WHEN("Configを構築")
+                {
+                    THEN("例外発生")
+                    {
+                        REQUIRE_THROWS_MATCHES(
+                            asr::util::logger::Config(ss),
+                            std::runtime_error,
+                            RuntimeErrorMatcher("spdlog.sinks.level指定なし"));
+                    }
+                }
+            }
+
+            SECTION("sinkにtype指定なし")
+            {
+                std::stringstream ss;
+                ss << "logger: spdlog" << std::endl
+                   << "spdlog:" << std::endl
+                   << "  level: warn" << std::endl
+                   << "  name: single_sink" << std::endl
+                   << "  sinks:" << std::endl
+                   << "    - aaa: bbb" << std::endl;
+
+                WHEN("Configを構築")
+                {
+                    THEN("例外発生")
+                    {
+                        REQUIRE_THROWS_MATCHES(
+                            asr::util::logger::Config(ss),
+                            std::runtime_error,
+                            RuntimeErrorMatcher("spdlog.sinks.type指定なし"));
+                    }
+                }
+            }
+
+            SECTION("sinkに下位ノードなし")
+            {
+                std::stringstream ss;
+                ss << "logger: spdlog" << std::endl
+                   << "spdlog:" << std::endl
+                   << "  level: warn" << std::endl
+                   << "  name: single_sink" << std::endl
+                   << "  sinks:" << std::endl;
+
+                WHEN("Configを構築")
+                {
+                    THEN("例外発生")
+                    {
+                        REQUIRE_THROWS_MATCHES(
+                            asr::util::logger::Config(ss),
+                            std::runtime_error,
+                            RuntimeErrorMatcher("spdlog.sinksノードが非配列"));
+                    }
+                }
+            }
+
+            SECTION("sinkに非オブジェクトの下位ノード")
+            {
+                std::stringstream ss;
+                ss << "logger: spdlog" << std::endl
+                   << "spdlog:" << std::endl
+                   << "  level: warn" << std::endl
+                   << "  name: single_sink" << std::endl
+                   << "  sinks:" << std::endl
+                   << "    - a" << std::endl;
+
+                WHEN("Configを構築")
+                {
+                    THEN("例外発生")
+                    {
+                        REQUIRE_THROWS_MATCHES(
+                            asr::util::logger::Config(ss),
+                            std::runtime_error,
+                            RuntimeErrorMatcher("spdlog.sinks[]ノードが非オブジェクト"));
+                    }
+                }
+            }
+
             SECTION("sink指定なし")
             {
                 std::stringstream ss;
@@ -156,6 +280,25 @@ TEST_CASE(
                 }
             }
 
+            SECTION("spdlogに非オブジェクトの下位ノード")
+            {
+                std::stringstream ss;
+                ss << "logger: spdlog" << std::endl
+                   << "spdlog:" << std::endl
+                   << "  - a" << std::endl;
+
+                WHEN("Configを構築")
+                {
+                    THEN("例外発生")
+                    {
+                        REQUIRE_THROWS_MATCHES(
+                            asr::util::logger::Config(ss),
+                            std::runtime_error,
+                            RuntimeErrorMatcher("spdlogノードが非オブジェクト"));
+                    }
+                }
+            }
+
             SECTION("spdlog指定なし")
             {
                 std::stringstream ss;
@@ -171,6 +314,23 @@ TEST_CASE(
                             RuntimeErrorMatcher("spdlog指定なし"));
                     }
                 }
+            }
+        }
+    }
+
+    SECTION("非spdlog指定")
+    {
+        std::stringstream ss;
+        ss << "logger: bbb" << std::endl;
+
+        WHEN("Configを構築")
+        {
+            THEN("例外発生")
+            {
+                REQUIRE_THROWS_MATCHES(
+                    asr::util::logger::Config(ss),
+                    std::runtime_error,
+                    RuntimeErrorMatcher("未対応のロガー(bbb)"));
             }
         }
     }
