@@ -118,7 +118,11 @@ Spdlog::generate_sink(
     }
 
     // 未対応のsink指定
-    return nullptr;
+    std::ostringstream oss;
+    oss << "未対応のsink ("
+        << the_sink_config.type
+        << ")";
+    throw std::runtime_error(oss.str());
 }
 
 spdlog::level::level_enum

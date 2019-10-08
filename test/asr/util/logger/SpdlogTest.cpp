@@ -72,6 +72,37 @@ TEST_CASE(
     "Spdlog::Spdlog - Config::Spdlog",
     "[asr][asr::util::logger][Spdlog]")
 {
+    GIVEN("未対応のsinkを指定してConfig::Spdlogを構築")
+    {
+        std::stringstream ss;
+        ss << "level: info" << std::endl
+           << "name: single_sink" << std::endl
+           << "sinks:" << std::endl
+           << "  - type: AbCd" << std::endl
+           << "    level: error" << std::endl
+           << "    pattern: AbCd" << std::endl;
+
+        YAML::Node yaml_node;
+
+        INFO("yaml=" << ss.str());
+        REQUIRE_NOTHROW(yaml_node = YAML::Load(ss.str()));
+
+        asr::util::logger::Config::Spdlog spdlog_config(yaml_node);
+
+        WHEN("Settersに有効な値を設定してSpdlogを構築")
+        {
+            auto mock = std::make_shared<asr::util::logger::SpdlogSettersMock>();
+            REQUIRE(mock.get() != nullptr);
+
+            REQUIRE_THROWS_MATCHES(
+                asr::util::logger::Spdlog(
+                    spdlog_config,
+                    std::dynamic_pointer_cast<asr::util::logger::Spdlog::Setters>(mock)),
+                std::runtime_error,
+                RuntimeErrorMatcher("未対応のsink (AbCd)"));
+        }
+    }
+
     GIVEN("1sinkのConfig::Spdlogを構築")
     {
         std::stringstream ss;
