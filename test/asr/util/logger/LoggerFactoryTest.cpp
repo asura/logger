@@ -9,10 +9,14 @@ TEST_CASE(
     "LoggerFactory::generate - Config",
     "[LoggerFactory][asr::util::logger]")
 {
+    // 以下の場合、Config構築に失敗 (例外発生) するため、テスト対象外
+    // 非spdlog指定
+
     SECTION("Config::loggerはspdlog")
     {
         // 以下の場合、Config構築に失敗 (例外発生) するため、テスト対象外
-        // - sinks指定なし
+        // - spdlog指定なし
+        // - spdlog.sinks指定なし
 
         SECTION("Config::spdlogに適切な設定あり")
         {

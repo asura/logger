@@ -15,16 +15,14 @@ LoggerFactory::generate(
     if (the_config.data().logger == "spdlog")
     {
         const auto& spdlog_config = the_config.data().spdlog;
-        if (!spdlog_config)
-        {
-            return nullptr;
-        }
+
+        assert(spdlog_config.get() != nullptr);  // Configクラスでチェックしているため、nullにはならない
 
         return std::unique_ptr<ILogger>(
             new Spdlog(*spdlog_config));
     }
 
-    return nullptr;
+    assert(false);  // Configクラスでチェックしているため、ここには来ない
 }
 }  // namespace logger
 }  // namespace util
