@@ -120,7 +120,7 @@ TEST_CASE(
 
         asr::util::logger::Config::Spdlog spdlog_config(yaml_node);
 
-        WHEN("Settersに有効な値を設定してSpdlogを構築")
+        WHEN("Settersにmockを設定してSpdlogを構築")
         {
             auto mock = std::make_shared<asr::util::logger::SpdlogSettersMock>();
             REQUIRE(mock.get() != nullptr);
@@ -138,6 +138,57 @@ TEST_CASE(
             asr::util::logger::Spdlog sut(
                 spdlog_config,
                 std::dynamic_pointer_cast<asr::util::logger::Spdlog::Setters>(mock));
+
+            SUCCEED();
+        }
+
+        WHEN("Settersに有効な値を設定してSpdlogを構築")
+        {
+            auto setters = std::make_shared<asr::util::logger::Spdlog::Setters>();
+
+            asr::util::logger::Spdlog sut(
+                spdlog_config,
+                std::dynamic_pointer_cast<asr::util::logger::Spdlog::Setters>(setters));
+
+            THEN("デフォルトロガーが設定される")
+            {
+                auto logger = spdlog::default_logger();
+                REQUIRE(logger);
+
+                AND_THEN("ログ出力レベルはINFO")
+                {
+                    CHECK(logger->level() == spdlog::level::info);
+                }
+
+                AND_THEN("名称はsingle_sink")
+                {
+                    CHECK(logger->name() == "single_sink");
+                }
+
+                AND_THEN("sinkは1つだけ設定される")
+                {
+                    REQUIRE(logger->sinks().size() == 1);
+
+                    AND_THEN("stderrへの色付きマルチスレッドロガー")
+                    {
+                        auto sink = logger->sinks().front();
+                        REQUIRE(sink);
+
+                        auto casted = std::dynamic_pointer_cast<
+                            spdlog::sinks::stderr_color_sink_mt>(
+                            sink);
+                        REQUIRE(casted);
+
+                        AND_THEN("ログ出力レベルはERROR")
+                        {
+                            CHECK(sink->level() == spdlog::level::err);
+
+                            // 出力フォーマットを確認したいが
+                            // フォーマッター取得メソッドがないので不可
+                        }
+                    }
+                }
+            }
         }
 
         WHEN("Settersにnullptrを設定してSpdlogを構築")
