@@ -1,0 +1,27 @@
+@startuml context
+
+!include definition.puml
+
+title <<コンテキスト図>>
+
+'----関係者定義----
+
+actor "システムの\n運用者" as p1
+
+'----関係者間の関係----
+
+'----システム----
+
+(logger) as lg
+(システム) as sys
+
+'----情報フロー----
+
+p1 .d.> sys : 実行
+sys --> lg : 実行時情報
+
+p1 <.d. sys : 実行時情報
+
+'----note----
+
+@enduml

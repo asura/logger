@@ -12,5 +12,12 @@ if (DOXYGEN_FOUND)
     doc
     ${DOXYGEN_EXECUTABLE} ${PROJECT_BINARY_DIR}/docs/Doxyfile
     WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
+    DEPENDS adoc
   )
 endif ()
+
+add_custom_target(
+  adoc
+  bundle exec asciidoctor-pdf -D ${PROJECT_BINARY_DIR}/docs -a imagesdir=${PROJECT_BINARY_DIR}/docs/images -a chapter-label= -a toc -a pdf-stylesdir=docs/design/style -a pdf-style=style.yml -r asciidoctor-pdf-cjk -r asciidoctor-diagram -a imagesoutdir=${PROJECT_BINARY_DIR}/docs/images docs/design/design.adoc
+  WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+)

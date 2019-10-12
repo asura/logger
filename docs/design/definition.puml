@@ -1,0 +1,5 @@
+skinparam {
+  shadowing false
+  monochrome true
+  defaultFontName "Consolas,メイリオ"
+}
