@@ -18,13 +18,13 @@ endif ()
 
 add_custom_target(
   adoc_design
-  bundle exec asciidoctor-pdf -D ${PROJECT_BINARY_DIR}/docs -a imagesdir=${PROJECT_BINARY_DIR}/docs/images -a chapter-label= -a toc -a pdf-stylesdir=docs/design/style -a pdf-style=style.yml -r asciidoctor-pdf-cjk -r asciidoctor-diagram -a imagesoutdir=${PROJECT_BINARY_DIR}/docs/images docs/design/design.adoc
+  bundle exec asciidoctor-pdf -D ${PROJECT_BINARY_DIR}/docs/html -a imagesdir=${PROJECT_BINARY_DIR}/docs/images -a chapter-label= -a toc -a pdf-stylesdir=docs/design/style -a pdf-style=style.yml -r asciidoctor-pdf-cjk -r asciidoctor-diagram -a imagesoutdir=${PROJECT_BINARY_DIR}/docs/images docs/design/design.adoc
   WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
 )
 
 add_custom_target(
   adoc_test_spec
-  bundle exec asciidoctor-pdf -D ${PROJECT_BINARY_DIR}/docs -a imagesdir=${PROJECT_BINARY_DIR}/docs/images -a chapter-label= -a toc -a pdf-stylesdir=docs/test_spec/style -a pdf-style=style.yml -r asciidoctor-pdf-cjk -r asciidoctor-diagram -a imagesoutdir=${PROJECT_BINARY_DIR}/docs/images docs/test_spec/test_spec.adoc
+  bundle exec asciidoctor-pdf -D ${PROJECT_BINARY_DIR}/docs/html -a imagesdir=${PROJECT_BINARY_DIR}/docs/images -a chapter-label= -a toc -a pdf-stylesdir=docs/test_spec/style -a pdf-style=style.yml -r asciidoctor-pdf-cjk -r asciidoctor-diagram -a imagesoutdir=${PROJECT_BINARY_DIR}/docs/images docs/test_spec/test_spec.adoc
   WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
 )
 
