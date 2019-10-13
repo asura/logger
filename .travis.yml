@@ -20,6 +20,11 @@ addons:
       - graphviz
       - libyaml-cpp-dev
 
+before_install:
+  - pip install --user cpp-coveralls
+  - gem install bundler
+  - bundle install
+
 install:
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
   - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
@@ -29,16 +34,13 @@ install:
   - PATH=${DEPS_DIR}/cmake/bin:$PATH
   - cd ${TRAVIS_BUILD_DIR}
 
-before_install:
-  - pip install --user cpp-coveralls
-
 script:
   - cd $TRAVIS_BUILD_DIR && mkdir build && cd build
   - cmake .. -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE=ON && make && make test
 
 after_success:
   - cd .. && coveralls -e test -e third_party --gcov-options '\-lp'
-  - cd build && doxygen docs/Doxyfile
+  - cd build && make doc
 
 deploy:
   provider: pages
