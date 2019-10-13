@@ -1,3 +1,4 @@
 # Hello markdown! {#mainpage}
 
-* [設計ドキュメント](../desgin.pdf)
+* [設計ドキュメント](../design.pdf)
+* [テストドキュメント](../test_spec.pdf)

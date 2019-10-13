@@ -1,0 +1,82 @@
+= asr::util::logger テスト仕様書
+
+include::definition.adoc[]
+
+== 単体テスト
+
+=== `asr::util` 名前空間
+
+==== `Logger` クラス
+
+===== `Logger(std::unique_ptr<logger::ILogger>&& the_impl)`
+
+[cols="1a,3a,3a", options="header"]
+|===
+|正常/異常
+|事前状態・入力値
+|期待値・状態
+
+|正常系
+|`the_impl` : 非nullptr
+|正常終了
+
+|異常系
+|`the_impl` : nullptr
+|* 例外 `std::runtime_error` 発生
+* メッセージ `ILogger was nullptr`
+
+|===
+
+===== `void output(const Level the_log_level, const std::string& the_file_name, const int the_line_number, const std::string& the_function_name, const std::string& the_message)`
+
+===== 方針
+
+* デフォルト構築した `Logger` を用いる。
+* `the_log_level` に対する6段階 (`VBS` 〜 `FTL`) の指定をそれぞれテストする。
+* それ以外の引数にはそれぞれ異なる値を指定し、結果文字列を確認する。
+** ログに出力される文字列: "ファイル名,行番号,関数名,メッセージ"
+
+[cols="1a,3a,3a", options="header"]
+|===
+|正常/異常
+|事前状態・入力値
+|期待値・状態
+
+|正常系
+|`the_log_level` : `VBS`
+|ログは出力されない
+
+|正常系
+|`the_log_level` : `DBG`
+|* デバッグ版ではDEBUGレベルのログが出力される
+* リリース版ではログは出力されない
+
+|正常系
+|`the_log_level` : `INF`
+|INFORMATIONレベルのログが出力される
+
+|正常系
+|`the_log_level` : `WRN`
+|WARNINGレベルのログが出力される
+
+|正常系
+|`the_log_level` : `ERR`
+|ERRORレベルのログが出力される
+
+|正常系
+|`the_log_level` : `FTL`
+|FATALレベルのログが出力される
+
+|===
+
+=== `asr::util::logger` 名前空間
+
+==== `Config` クラス
+
+==== `ILogger` クラス
+
+インタフェースクラスであるため単体テスト対象外。
+
+==== `LoggerFactory` クラス
+
+==== `Spdlog` クラス
