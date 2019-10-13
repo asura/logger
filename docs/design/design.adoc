@@ -17,7 +17,7 @@ include::context.puml[]
 
 ==== ユースケース記述
 
-//include::usecase.adoc[]
+include::usecase.adoc[]
 
 <<<
 
