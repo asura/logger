@@ -11,6 +11,15 @@ add_subdirectory(third_party/Catch2-2.9.2)
 add_subdirectory(third_party/googletest-release-1.8.1)
 add_subdirectory(third_party/spdlog-1.3.1)
 
+include(ExternalProject)
+
+ExternalProject_Add(
+	yaml_cpp_project
+  SOURCE_DIR "${CMAKE_SOURCE_DIR}/third_party/yaml-cpp-0.6.3/"
+  INSTALL_DIR "${CMAKE_BINARY_DIR}"
+	CMAKE_ARGS -DYAML_CPP_BUILD_TESTS=OFF -DYAML_CPP_BUILD_TOOLS=OFF -DYAML_CPP_BUILD_CONTRIB=OFF -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
+)
+
 # C++規格
 set(CMAKE_CXX_STANDARD 11)
 
@@ -36,11 +45,6 @@ endif()
 
 #######################################
 # 外部パッケージ
-find_package(yaml-cpp)
-if(NOT yaml-cpp_FOUND)
-  find_package(PkgConfig REQUIRED)
-  pkg_check_modules(yaml-cpp yaml-cpp REQUIRED)
-endif()
 
 #######################################
 # コンパイラに応じた警告設定

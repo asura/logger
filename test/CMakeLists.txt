@@ -3,6 +3,11 @@ include_directories(
   ${PROJECT_SOURCE_DIR}/third_party/googletest-release-1.8.1/googlemock/include
   ${PROJECT_SOURCE_DIR}/include
   ${PROJECT_SOURCE_DIR}/test
+  ${CMAKE_BINARY_DIR}/include
+)
+
+link_directories(
+  ${CMAKE_BINARY_DIR}/lib
 )
 
 add_executable(

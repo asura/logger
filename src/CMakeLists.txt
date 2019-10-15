@@ -1,5 +1,6 @@
 include_directories(
     ${PROJECT_SOURCE_DIR}/include
+    ${CMAKE_BINARY_DIR}/include
 )
 
 add_library(
@@ -8,6 +9,11 @@ add_library(
     asr/util/logger/Config.cpp
     asr/util/logger/LoggerFactory.cpp
     asr/util/logger/Spdlog.cpp
+)
+
+add_dependencies(
+  asr_util_logger
+  yaml_cpp_project
 )
 
 if (COVERAGE)

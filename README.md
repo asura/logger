@@ -17,13 +17,6 @@
     * g++ 5.4.0 @ Ubuntu 16.04
     * g++ 7.3.1 @ CentOS 7.6
     * clang++ 10.0.1 @ macOS Mojave 10.14.6
-* yaml-cpp
-  * Ubuntuの場合
-    * `apt-get install libyaml-cpp-dev`
-  * CentOS7の場合
-    * `yum install yaml-cpp-devel`
-  * macOSの場合
-    * `brew install yaml-cpp`
 * clang-tidy (optional)
 
 ## cmake options

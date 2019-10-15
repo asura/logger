@@ -22,7 +22,6 @@ addons:
     packages:
       - doxygen
       - graphviz
-      - libyaml-cpp-dev
       - fonts-takao
 
 bundler_args: --jobs=4
