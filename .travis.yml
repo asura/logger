@@ -45,7 +45,7 @@ script:
   - cmake .. -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE=ON -DUSE_CLANG_TIDY=ON && make -j4 && make test
 
 after_success:
-  - cd .. && coveralls -e test -e third_party --gcov-options '\-lp'
+  - cd .. && coveralls -e build -e test -e third_party --gcov-options '\-lp'
   - cd build && make doc
 
 deploy:
