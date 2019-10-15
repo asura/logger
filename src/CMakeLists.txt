@@ -5,6 +5,8 @@ include_directories(
 add_library(
     asr_util_logger
     asr/util/Logger.cpp
+    asr/util/logger/Config.cpp
+    asr/util/logger/LoggerFactory.cpp
     asr/util/logger/Spdlog.cpp
 )
 
@@ -16,4 +18,5 @@ endif()
 target_link_libraries(
     asr_util_logger
     spdlog::spdlog
+    yaml-cpp
 )

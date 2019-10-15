@@ -11,11 +11,12 @@ namespace util
 {
 namespace logger
 {
-struct ILoggingImpl;
+struct ILogger;
 }  // namespace logger
 
 /// @brief ログ出力
-/// サンプルコード
+///
+/// [サンプルコード]
 /// @code
 /// #include "asr/util/Logger.h"
 ///
@@ -30,21 +31,21 @@ public:
     /// ログレベル
     enum Level
     {
-        TRC,  ///< 詳細な調査用。プロダクションコードには残さないこと。
+        VBS,  ///< 詳細な調査用。プロダクションコードには残さないこと。
         DBG,  ///< デバッグ用途
         INF,  ///< 正常時、ユーザ or 運用担当者に通知したいケース
         WRN,  ///< 処理は継続して良いが、後後のため通知するケース
         ERR,  ///< 異常発生時
-        CRT   ///< 実行を即停止せざるを得ないケース
+        FTL   ///< 実行を即停止せざるを得ないケース
     };
 
 private:
-    std::unique_ptr<logger::ILoggingImpl> m_impl;
+    std::unique_ptr<logger::ILogger> m_impl;
 
 public:
     Logger() = delete;
 
-    explicit Logger(std::unique_ptr<logger::ILoggingImpl>&& the_impl);
+    explicit Logger(std::unique_ptr<logger::ILogger>&& the_impl);
 
     /// @brief ログ出力
     /// @param [in] the_log_level 本ログのログレベル
@@ -55,26 +56,26 @@ public:
                 const std::string& the_message);
 };
 
-Logger& theLogger(const std::string& the_ident = "");
+Logger& theLogger();
 }  // namespace util
 }  // namespace asr
 
-/// トレースレベルのログ
-#define ASR_UTIL_LOGT(the_message) asr::util::theLogger().output(asr::util::Logger::TRC, __FILE__, __LINE__, __func__, the_message)
+/// @brief トレースレベルのログ
+#define ASR_UTIL_LOGV(the_message) asr::util::theLogger().output(asr::util::Logger::VBS, __FILE__, __LINE__, __func__, the_message)
 
-/// デバッグレベルのログ
+/// @brief デバッグレベルのログ
 #define ASR_UTIL_LOGD(the_message) asr::util::theLogger().output(asr::util::Logger::DBG, __FILE__, __LINE__, __func__, the_message)
 
-/// 通常レベルのログ
+/// @brief 通常レベルのログ
 #define ASR_UTIL_LOGI(the_message) asr::util::theLogger().output(asr::util::Logger::INF, __FILE__, __LINE__, __func__, the_message)
 
-/// 警告レベルのログ
+/// @brief 警告レベルのログ
 #define ASR_UTIL_LOGW(the_message) asr::util::theLogger().output(asr::util::Logger::WRN, __FILE__, __LINE__, __func__, the_message)
 
-/// エラーレベルのログ
+/// @brief エラーレベルのログ
 #define ASR_UTIL_LOGE(the_message) asr::util::theLogger().output(asr::util::Logger::ERR, __FILE__, __LINE__, __func__, the_message)
 
-/// クリティカルレベルのログ
-#define ASR_UTIL_LOGC(the_message) asr::util::theLogger().output(asr::util::Logger::CRT, __FILE__, __LINE__, __func__, the_message)
+/// @brief クリティカルレベルのログ
+#define ASR_UTIL_LOGF(the_message) asr::util::theLogger().output(asr::util::Logger::FTL, __FILE__, __LINE__, __func__, the_message)
 
 #endif  // ASR_UTIL_LOGGER_H

@@ -1,0 +1,29 @@
+@startuml context
+
+!include definition.puml
+
+title <<コンテキスト図>>
+
+'----関係者定義----
+
+actor "システムの\n運用者" as p1
+actor "システムの\n設計者" as p2
+
+'----関係者間の関係----
+
+'----システム----
+
+(logger) as lg
+(システム) as sys
+
+'----情報フロー----
+
+p1 .d.> sys : 実行
+sys --> lg : ログ出力ライブラリ\nログ出力フォーマット\n実行時情報
+p2 .r.> sys : 使用するログ出力ライブラリを選択\nログ出力フォーマットを指定
+
+p1 <.d. sys : 実行時情報
+
+'----note----
+
+@enduml

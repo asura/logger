@@ -25,6 +25,10 @@ else()
 endif()
 
 #######################################
+# 外部パッケージ
+find_package(yaml-cpp REQUIRED)
+
+#######################################
 # コンパイラに応じた警告設定
 if(MSVC)
   add_compile_options(/W4 /WX)
@@ -74,6 +78,7 @@ endif()
 #######################################
 # GTest無効化
 add_definitions(-DINSTALL_GTEST=OFF)
+add_definitions(-DYAML_CPP_BUILD_TOOLS=OFF)
 
 #######################################
 # 本体

@@ -2,6 +2,7 @@ include_directories(
   ${PROJECT_SOURCE_DIR}/third_party/Catch2-2.9.2/single_include/catch2
   ${PROJECT_SOURCE_DIR}/third_party/googletest-release-1.8.1/googlemock/include
   ${PROJECT_SOURCE_DIR}/include
+  ${PROJECT_SOURCE_DIR}/test
 )
 
 add_executable(
@@ -9,8 +10,10 @@ add_executable(
   Tester.cpp
   CErrRedirecter.cpp
   CErrRedirecterTest.cpp
-  LoggerTest.cpp
-  SpdlogTest.cpp
+  asr/util/LoggerTest.cpp
+  asr/util/logger/ConfigTest.cpp
+  asr/util/logger/LoggerFactoryTest.cpp
+  asr/util/logger/SpdlogTest.cpp
 )
 
 if (COVERAGE)

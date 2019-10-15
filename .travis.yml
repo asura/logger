@@ -13,11 +13,24 @@ env:
   global:
     secure: "Jo0Yx6pNQthCo15e4rxl8pWIGP3+BAvRMYn1kerklcLdkRx0PPt8bpEr9N42IkGq660RMLTsdtmMEoVT/Soo2o3gGeeFRW2k8gZQfawpM9P//nwsBtpdUGoutJz7gs/Oq1cVtWNAMcSBLpPbF6mM8uxV6XDv6ctuLcOPD3MclXNE9Lj/9xYFon4X3p7gTvIyadCbkLzaAB31UkfWYh+6jVSWAg0nI77ndYnP5qLOrLuBRlakAZeFvl9bUem0QeNN78MJ7t8JCs2rMvnUKEsNvu6vUoVhcdtlSTN6ofYhmURwZQjeicHvxUu6wV5QwFLOVQtOK0VIBGpqHnzkxTO6Z1L1YTER60a/9q3QfwhUOJvzxMciAu70jLodc03nq9lyV97/6RZY/DXmYAy+x1hTBbEx1TYL75DvTvfn5lOSjEDdX/+mdJLu+x45pgIVYQ1w9ruYoN9HwmvnwwspXic/GuEXSD3Qo59k1fAp7amjsjJvtJrlCbTbMT99pwdvNt9kjD8kxH0BEqQG1ogv4ofJuExDr2Kr+xqOqkHo2Z2gci2k8SWnuIj2dzuW8YtC8+mOy0kzHN5KhrKO3wopiC5YBTMtzfpZtGZp17qEbIKxPgqHlddW65IYc26SYoGEZveqcStC40BlYykWwOQ1U6rGSXE8mQh9fCfDllhu2U7SJiw="
 
+cache:
+  apt: true
+  bundler: true
+
 addons:
   apt:
     packages:
       - doxygen
       - graphviz
+      - libyaml-cpp-dev
+      - fonts-takao
+
+bundler_args: --jobs=4
+
+before_install:
+  - pip install --user cpp-coveralls
+  - gem install bundler
+  - bundle install
 
 install:
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
@@ -28,16 +41,13 @@ install:
   - PATH=${DEPS_DIR}/cmake/bin:$PATH
   - cd ${TRAVIS_BUILD_DIR}
 
-before_install:
-  - pip install --user cpp-coveralls
-
 script:
   - cd $TRAVIS_BUILD_DIR && mkdir build && cd build
-  - cmake .. -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE=ON && make && make test
+  - cmake .. -DCMAKE_BUILD_TYPE=Debug -DCOVERAGE=ON && make -j4 && make test
 
 after_success:
   - cd .. && coveralls -e test -e third_party --gcov-options '\-lp'
-  - cd build && doxygen docs/Doxyfile
+  - cd build && make doc
 
 deploy:
   provider: pages
