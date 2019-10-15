@@ -10,6 +10,11 @@ project(
 set(CMAKE_CXX_STANDARD 11)
 
 #######################################
+# オプション指定
+option(USE_CLANG_TIDY "clang-tidyを使って静的解析する" OFF)
+option(COVERAGE "テストカバレッジ取得" OFF)
+
+#######################################
 # ビルド・タイプ指定(Debug or Releaseに限定)
 if(CMAKE_BUILD_TYPE)
   if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
@@ -56,14 +61,21 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 #######################################
 # clang-tidyを実行させる (要 CMake 3.6)
-set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-header-filter=${CMAKE_SOURCE_DIR}/include")
+if (USE_CLANG_TIDY)
+  # clang-tidyの存在確認
+  find_program(CLANG_TIDY_EXE clang-tidy)
+  if(NOT CLANG_TIDY_EXE)
+    message(FATAL_ERROR "clang-tidyが必要です")
+  endif()
+
+  set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-header-filter=${CMAKE_SOURCE_DIR}/include")
+endif()
 
 #######################################
 # CTest有効化
 enable_testing()
 
-# テストカバレッジ : デフォルトはOFF
-SET(COVERAGE OFF CACHE BOOL "Coverage")
+# テストカバレッジ
 
 if(COVERAGE)
   add_custom_target(

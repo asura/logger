@@ -9,6 +9,7 @@
 
 ## requirement
 
+* CMake v3.13以降
 * C++11 compiler
   * 以下でテスト
     * g++ 5.4.0 @ Ubuntu 16.04
@@ -18,3 +19,13 @@
     * `apt-get install libyaml-cpp-dev`
   * CentOS7の場合
     * `yum install yaml-cpp-devel`
+  * macosの場合
+    * `brew install yaml-cpp`
+* clang-tidy (optional)
+
+## cmake options
+
+|オプション名|説明|デフォルト値|
+|-|-|-|
+|`COVERAGE`|テストカバレッジ取得|`OFF`|
+|`USE_CLANG_TIDY`|`clang-tidy`を使った静的解析|`OFF`|
