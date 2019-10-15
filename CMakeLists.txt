@@ -26,7 +26,11 @@ endif()
 
 #######################################
 # 外部パッケージ
-find_package(yaml-cpp REQUIRED)
+find_package(yaml-cpp)
+if(NOT yaml-cpp_FOUND)
+  find_package(PkgConfig REQUIRED)
+  pkg_check_modules(yaml-cpp yaml-cpp REQUIRED)
+endif()
 
 #######################################
 # コンパイラに応じた警告設定
