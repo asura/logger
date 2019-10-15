@@ -5,7 +5,9 @@
 [![Build Status](https://travis-ci.org/asura/logger.svg?branch=master)](https://travis-ci.org/asura/logger)
  [![Coverage Status](https://coveralls.io/repos/github/asura/logger/badge.svg?branch=master)](https://coveralls.io/github/asura/logger?branch=master)
 
+* [設計ドキュメント](https://asura.github.io/logger/design.pdf)
 * [Doxygenドキュメント](https://asura.github.io/logger/)
+* [テスト仕様](https://asura.github.io/logger/test_spec.pdf)
 
 ## requirement
 
@@ -20,7 +22,7 @@
     * `apt-get install libyaml-cpp-dev`
   * CentOS7の場合
     * `yum install yaml-cpp-devel`
-  * macosの場合
+  * macOSの場合
     * `brew install yaml-cpp`
 * clang-tidy (optional)
 
