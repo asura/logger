@@ -6,6 +6,11 @@ project(
   LANGUAGES CXX
 )
 
+# サードパーティ ライブラリ群
+add_subdirectory(third_party/Catch2-2.9.2)
+add_subdirectory(third_party/googletest-release-1.8.1)
+add_subdirectory(third_party/spdlog-1.3.1)
+
 # C++規格
 set(CMAKE_CXX_STANDARD 11)
 
@@ -92,15 +97,7 @@ if(COVERAGE)
 endif()
 
 #######################################
-# GTest無効化
-add_definitions(-DINSTALL_GTEST=OFF)
-add_definitions(-DYAML_CPP_BUILD_TOOLS=OFF)
-
-#######################################
 # 本体
-add_subdirectory(third_party/Catch2-2.9.2)
-add_subdirectory(third_party/googletest-release-1.8.1)
-add_subdirectory(third_party/spdlog-1.3.1)
 add_subdirectory(docs)
 add_subdirectory(src)
 add_subdirectory(test)
