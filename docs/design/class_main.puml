@@ -1,0 +1,62 @@
+@startuml class_main
+
+title メイン
+
+skinparam {
+  monochrome true
+  shadowing false
+}
+hide circle
+hide empty members
+
+namespace asr::util {
+  class global {
+    + Logger& theLogger()
+  }
+  class Logger {
+    + Logger(unique_ptr<logger::ILogger>&&)
+
+    + void output(const Level, const string&, const int, const string&, const string&)
+  }
+
+  class Logger::Level <<Enumeration>> {
+    VBS
+    DBG
+    INF
+    WRN
+    ERR
+    FTL
+  }
+
+  namespace logger {
+    abstract class ILogger <<Interface>> {
+      + {abstract} void output(const Logger::Level, const string&)
+    }
+
+    class Config {
+      + Config(std::istream&)
+    }
+
+    class Config::TopLevel {
+      + std::string logger
+
+      + TopLevel(const YAML::Node&)
+    }
+
+    class LoggerFactory {
+      + {static} std::unique_ptr<ILogger> generate(const Config&)
+    }
+
+    LoggerFactory ..> ILogger
+    LoggerFactory ..> Config
+    Config *-u-> Config::TopLevel : m_data
+  }
+
+  Logger *-u-> asr::util.logger.ILogger
+
+  global .u.> Logger
+
+  Logger .[hidden]r. Logger::Level
+}
+
+@enduml

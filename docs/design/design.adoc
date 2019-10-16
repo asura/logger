@@ -29,9 +29,17 @@ include::usecase.adoc[]
 
 == 静的構造
 
-<<<
-
 === クラス図
+
+[plantuml,class_main]
+....
+include::class_main.puml[]
+....
+
+[plantuml,class_spdlog]
+....
+include::class_spdlog.puml[]
+....
 
 <<<
 

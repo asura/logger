@@ -1,0 +1,87 @@
+@startuml class_spdlog
+
+title spdlog利用部分
+
+skinparam {
+  monochrome true
+  shadowing false
+}
+hide circle
+hide empty members
+
+namespace asr::util::logger {
+  abstract class ILogger <<Interface>> {
+    + {abstract} void output(const Logger::Level, const string&)
+  }
+
+  class Config::TopLevel {
+    + std::string logger
+
+    + TopLevel(const YAML::Node&)
+  }
+
+  class Config::Spdlog {
+    + std::string level
+    + std::string name
+
+    + Spdlog(const YAML::Node& node)
+  }
+
+  class Config::Spdlog::Sink {
+    + std::string type
+    + std::string level
+    + std::unique_ptr<std::string> pattern
+    + std::unique_ptr<std::string> ident
+
+    + Sink(const YAML::Node& node)
+  }
+
+  class Spdlog {
+    + Spdlog()
+    + Spdlog(const Config::Spdlog&, shared_ptr<Setters>)
+
+    + void output(const Logger::Level, const string&)
+  }
+
+  class Spdlog::Setters {
+    + level_enum convert_level(const string&)
+    + {abstract} void set_level(sink&, const string&)
+    + {abstract} void set_pattern(sink&, const string&)
+  }
+
+  class SpdlogSettersMock <<テスト用途>> {
+    + void set_level(sink&, const string&)
+    + void set_pattern(sink&, const string&)
+  }
+
+  ILogger <|-u- Spdlog
+  Spdlog::Setters <|-- SpdlogSettersMock
+
+  Spdlog *-r-> Spdlog::Setters
+  Config::TopLevel *-u-> Config::Spdlog : spdlog
+  Config::Spdlog *-u-> Config::Spdlog::Sink : sinks
+}
+
+namespace spdlog {
+  class logger
+
+  namespace level {
+    class level_enum <<Enumeration>>
+  }
+
+  namespace sinks {
+    class sink
+  }
+}
+
+class "stderr出力を文字列バッファへリダイレクト\nCErrRedirecter" as CErrRedirecter <<テスト用途>> {
+  + CErrRedirecter()
+  + ~CErrRedirecter()
+
+  + char* data()
+  + size_t size()
+}
+
+asr::util::logger.Spdlog *-u-> spdlog.logger
+
+@enduml
