@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>asr_util_logger: Spdlog.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">asr_util_logger
+   &#160;<span id="projectnumber">1.0.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>総合概要</span></a></li>
+      <li><a href="namespaces.html"><span>名前空間</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+      <li><a href="globals.html"><span>ファイルメンバ</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('Spdlog_8h_source.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">Spdlog.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="Spdlog_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef ASR_UTIL_LOGGER_SPDLOG_H</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define ASR_UTIL_LOGGER_SPDLOG_H</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Config_8h.html">asr/util/logger/Config.h</a>&quot;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ILogger_8h.html">asr/util/logger/ILogger.h</a>&quot;</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;spdlog/spdlog.h&gt;</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceasr.html">asr</a></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span>util</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span>logger</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div><div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classasr_1_1util_1_1logger_1_1Spdlog.html">   20</a></span>&#160;<span class="keyword">class </span><a class="code" href="classasr_1_1util_1_1logger_1_1Spdlog.html">Spdlog</a> : <span class="keyword">public</span> <a class="code" href="structasr_1_1util_1_1logger_1_1ILogger.html">ILogger</a></div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="structasr_1_1util_1_1logger_1_1Spdlog_1_1Setters.html">   27</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structasr_1_1util_1_1logger_1_1Spdlog_1_1Setters.html">Setters</a></div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    {</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="structasr_1_1util_1_1logger_1_1Spdlog_1_1Setters.html#aa8f9d49ebaaec594aa683ac4fea8371f">~Setters</a>() = <span class="keywordflow">default</span>;</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        spdlog::level::level_enum <a class="code" href="structasr_1_1util_1_1logger_1_1Spdlog_1_1Setters.html#aeec16cf9d88162dbcfdfb8399ca4e943">convert_level</a>(<span class="keyword">const</span> std::string&amp; the_level) <span class="keyword">const</span>;</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="structasr_1_1util_1_1logger_1_1Spdlog_1_1Setters.html#af33a3a65de995107b312d01570016d7c">set_level</a>(spdlog::sinks::sink&amp; the_sink, <span class="keyword">const</span> std::string&amp; the_level);</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="structasr_1_1util_1_1logger_1_1Spdlog_1_1Setters.html#a08a082b3e323df4cbb16fa1cca6a3b1c">set_pattern</a>(spdlog::sinks::sink&amp; the_sink, <span class="keyword">const</span> std::string&amp; the_pattern);</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    };</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classasr_1_1util_1_1logger_1_1Spdlog.html#af9a4353e3ee245a653b186d2cd5df158">   59</a></span>&#160;    std::shared_ptr&lt;spdlog::logger&gt; <a class="code" href="classasr_1_1util_1_1logger_1_1Spdlog.html#af9a4353e3ee245a653b186d2cd5df158">m_old_logger</a>;  </div><div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classasr_1_1util_1_1logger_1_1Spdlog.html#a59c187aac6e8ad5b6a9a17afcb74357d">   60</a></span>&#160;    std::shared_ptr&lt;Setters&gt; <a class="code" href="classasr_1_1util_1_1logger_1_1Spdlog.html#a59c187aac6e8ad5b6a9a17afcb74357d">m_setters</a>;            </div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="classasr_1_1util_1_1logger_1_1Spdlog.html#a95998c39f54059d01078f245ba27e464">Spdlog</a>();</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classasr_1_1util_1_1logger_1_1Spdlog.html#a95998c39f54059d01078f245ba27e464">Spdlog</a>(<span class="keyword">const</span> <a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog.html">Config::Spdlog</a>&amp; the_config, std::shared_ptr&lt;Setters&gt; the_setters = std::make_shared&lt;Setters&gt;());</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="classasr_1_1util_1_1logger_1_1Spdlog.html#a95998c39f54059d01078f245ba27e464">Spdlog</a>(<span class="keyword">const</span> <a class="code" href="classasr_1_1util_1_1logger_1_1Spdlog.html">Spdlog</a>&amp;) = <span class="keyword">delete</span>;</div><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <a class="code" href="classasr_1_1util_1_1logger_1_1Spdlog.html#a95998c39f54059d01078f245ba27e464">Spdlog</a>(<a class="code" href="classasr_1_1util_1_1logger_1_1Spdlog.html">Spdlog</a>&amp;&amp;) = <span class="keyword">delete</span>;</div><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="classasr_1_1util_1_1logger_1_1Spdlog.html#a0c21c44bfa26dadf6ffcc45d7474aeb2">~Spdlog</a>() <span class="keyword">override</span>;</div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <a class="code" href="classasr_1_1util_1_1logger_1_1Spdlog.html">Spdlog</a>&amp; <a class="code" href="classasr_1_1util_1_1logger_1_1Spdlog.html#a6c6276d97965134b09cee04fa842dea5">operator=</a>(<span class="keyword">const</span> <a class="code" href="classasr_1_1util_1_1logger_1_1Spdlog.html">Spdlog</a>&amp;) = <span class="keyword">delete</span>;</div><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <a class="code" href="classasr_1_1util_1_1logger_1_1Spdlog.html">Spdlog</a>&amp; <a class="code" href="classasr_1_1util_1_1logger_1_1Spdlog.html#a6c6276d97965134b09cee04fa842dea5">operator=</a>(<a class="code" href="classasr_1_1util_1_1logger_1_1Spdlog.html">Spdlog</a>&amp;&amp;) &amp; = <span class="keyword">delete</span>;</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classasr_1_1util_1_1logger_1_1Spdlog.html#a568e15d2d72dd64ff1e3dc4d4455b52c">output</a>(<span class="keyword">const</span> <a class="code" href="classasr_1_1util_1_1Logger.html#a71503eb87a4b8911d97f583ef7fe0078">Logger::Level</a> the_log_level,</div><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                <span class="keyword">const</span> std::string&amp; the_log_message)</div><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keyword">override</span>;</div><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    std::shared_ptr&lt;spdlog::logger&gt; <a class="code" href="classasr_1_1util_1_1logger_1_1Spdlog.html#a0a53657f97656b55574d79e012762c21">logger</a>();</div><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    spdlog::sink_ptr <a class="code" href="classasr_1_1util_1_1logger_1_1Spdlog.html#a23839a20d23c9681b1e1a9bf3570d12e">generate_sink</a>(<span class="keyword">const</span> <a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink.html">Config::Spdlog::Sink</a>&amp; the_sink_config);</div><div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;};</div><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;}  <span class="comment">// namespace logger</span></div><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}  <span class="comment">// namespace util</span></div><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;}  <span class="comment">// namespace asr</span></div><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor">#endif  // ASR_UTIL_LOGGER_SPDLOG_H</span></div><div class="ttc" id="classasr_1_1util_1_1Logger_html_a71503eb87a4b8911d97f583ef7fe0078"><div class="ttname"><a href="classasr_1_1util_1_1Logger.html#a71503eb87a4b8911d97f583ef7fe0078">asr::util::Logger::Level</a></div><div class="ttdeci">Level</div><div class="ttdoc">ログレベル </div><div class="ttdef"><b>Definition:</b> Logger.h:32</div></div>
+<div class="ttc" id="classasr_1_1util_1_1logger_1_1Spdlog_html_a59c187aac6e8ad5b6a9a17afcb74357d"><div class="ttname"><a href="classasr_1_1util_1_1logger_1_1Spdlog.html#a59c187aac6e8ad5b6a9a17afcb74357d">asr::util::logger::Spdlog::m_setters</a></div><div class="ttdeci">std::shared_ptr&lt; Setters &gt; m_setters</div><div class="ttdoc">設定指定構築時に指定された Setters </div><div class="ttdef"><b>Definition:</b> Spdlog.h:60</div></div>
+<div class="ttc" id="structasr_1_1util_1_1logger_1_1Spdlog_1_1Setters_html_a08a082b3e323df4cbb16fa1cca6a3b1c"><div class="ttname"><a href="structasr_1_1util_1_1logger_1_1Spdlog_1_1Setters.html#a08a082b3e323df4cbb16fa1cca6a3b1c">asr::util::logger::Spdlog::Setters::set_pattern</a></div><div class="ttdeci">virtual void set_pattern(spdlog::sinks::sink &amp;the_sink, const std::string &amp;the_pattern)</div><div class="ttdoc">ログ出力パターンを設定する </div><div class="ttdef"><b>Definition:</b> Spdlog.cpp:177</div></div>
+<div class="ttc" id="ILogger_8h_html"><div class="ttname"><a href="ILogger_8h.html">ILogger.h</a></div></div>
+<div class="ttc" id="structasr_1_1util_1_1logger_1_1ILogger_html"><div class="ttname"><a href="structasr_1_1util_1_1logger_1_1ILogger.html">asr::util::logger::ILogger</a></div><div class="ttdoc">ログ出力の詳細を担うインタフェース </div><div class="ttdef"><b>Definition:</b> ILogger.h:13</div></div>
+<div class="ttc" id="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink_html"><div class="ttname"><a href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink.html">asr::util::logger::Config::Spdlog::Sink</a></div><div class="ttdef"><b>Definition:</b> Config.h:22</div></div>
+<div class="ttc" id="classasr_1_1util_1_1logger_1_1Spdlog_html_af9a4353e3ee245a653b186d2cd5df158"><div class="ttname"><a href="classasr_1_1util_1_1logger_1_1Spdlog.html#af9a4353e3ee245a653b186d2cd5df158">asr::util::logger::Spdlog::m_old_logger</a></div><div class="ttdeci">std::shared_ptr&lt; spdlog::logger &gt; m_old_logger</div><div class="ttdoc">構築前のデフォルトロガーを保持しておく </div><div class="ttdef"><b>Definition:</b> Spdlog.h:59</div></div>
+<div class="ttc" id="structasr_1_1util_1_1logger_1_1Spdlog_1_1Setters_html_af33a3a65de995107b312d01570016d7c"><div class="ttname"><a href="structasr_1_1util_1_1logger_1_1Spdlog_1_1Setters.html#af33a3a65de995107b312d01570016d7c">asr::util::logger::Spdlog::Setters::set_level</a></div><div class="ttdeci">virtual void set_level(spdlog::sinks::sink &amp;the_sink, const std::string &amp;the_level)</div><div class="ttdoc">ログレベルを設定する </div><div class="ttdef"><b>Definition:</b> Spdlog.cpp:170</div></div>
+<div class="ttc" id="Config_8h_html"><div class="ttname"><a href="Config_8h.html">Config.h</a></div></div>
+<div class="ttc" id="classasr_1_1util_1_1logger_1_1Spdlog_html_a6c6276d97965134b09cee04fa842dea5"><div class="ttname"><a href="classasr_1_1util_1_1logger_1_1Spdlog.html#a6c6276d97965134b09cee04fa842dea5">asr::util::logger::Spdlog::operator=</a></div><div class="ttdeci">Spdlog &amp; operator=(const Spdlog &amp;)=delete</div></div>
+<div class="ttc" id="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_html"><div class="ttname"><a href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog.html">asr::util::logger::Config::Spdlog</a></div><div class="ttdef"><b>Definition:</b> Config.h:20</div></div>
+<div class="ttc" id="structasr_1_1util_1_1logger_1_1Spdlog_1_1Setters_html_aa8f9d49ebaaec594aa683ac4fea8371f"><div class="ttname"><a href="structasr_1_1util_1_1logger_1_1Spdlog_1_1Setters.html#aa8f9d49ebaaec594aa683ac4fea8371f">asr::util::logger::Spdlog::Setters::~Setters</a></div><div class="ttdeci">virtual ~Setters()=default</div></div>
+<div class="ttc" id="structasr_1_1util_1_1logger_1_1Spdlog_1_1Setters_html"><div class="ttname"><a href="structasr_1_1util_1_1logger_1_1Spdlog_1_1Setters.html">asr::util::logger::Spdlog::Setters</a></div><div class="ttdoc">ログレベル・出力パターンをspdlogに設定するファンクタ </div><div class="ttdef"><b>Definition:</b> Spdlog.h:27</div></div>
+<div class="ttc" id="classasr_1_1util_1_1logger_1_1Spdlog_html"><div class="ttname"><a href="classasr_1_1util_1_1logger_1_1Spdlog.html">asr::util::logger::Spdlog</a></div><div class="ttdoc">spdlogを用いてログ出力する </div><div class="ttdef"><b>Definition:</b> Spdlog.h:20</div></div>
+<div class="ttc" id="structasr_1_1util_1_1logger_1_1Spdlog_1_1Setters_html_aeec16cf9d88162dbcfdfb8399ca4e943"><div class="ttname"><a href="structasr_1_1util_1_1logger_1_1Spdlog_1_1Setters.html#aeec16cf9d88162dbcfdfb8399ca4e943">asr::util::logger::Spdlog::Setters::convert_level</a></div><div class="ttdeci">spdlog::level::level_enum convert_level(const std::string &amp;the_level) const </div><div class="ttdoc">ログレベル文字列を spdlog のログレベル enum に変換する </div><div class="ttdef"><b>Definition:</b> Spdlog.cpp:129</div></div>
+<div class="ttc" id="classasr_1_1util_1_1logger_1_1Spdlog_html_a95998c39f54059d01078f245ba27e464"><div class="ttname"><a href="classasr_1_1util_1_1logger_1_1Spdlog.html#a95998c39f54059d01078f245ba27e464">asr::util::logger::Spdlog::Spdlog</a></div><div class="ttdeci">Spdlog()</div><div class="ttdoc">デフォルト構築 </div><div class="ttdef"><b>Definition:</b> Spdlog.cpp:14</div></div>
+<div class="ttc" id="classasr_1_1util_1_1logger_1_1Spdlog_html_a0c21c44bfa26dadf6ffcc45d7474aeb2"><div class="ttname"><a href="classasr_1_1util_1_1logger_1_1Spdlog.html#a0c21c44bfa26dadf6ffcc45d7474aeb2">asr::util::logger::Spdlog::~Spdlog</a></div><div class="ttdeci">~Spdlog() override</div><div class="ttdef"><b>Definition:</b> Spdlog.cpp:63</div></div>
+<div class="ttc" id="classasr_1_1util_1_1logger_1_1Spdlog_html_a0a53657f97656b55574d79e012762c21"><div class="ttname"><a href="classasr_1_1util_1_1logger_1_1Spdlog.html#a0a53657f97656b55574d79e012762c21">asr::util::logger::Spdlog::logger</a></div><div class="ttdeci">std::shared_ptr&lt; spdlog::logger &gt; logger()</div><div class="ttdef"><b>Definition:</b> Spdlog.cpp:96</div></div>
+<div class="ttc" id="classasr_1_1util_1_1logger_1_1Spdlog_html_a23839a20d23c9681b1e1a9bf3570d12e"><div class="ttname"><a href="classasr_1_1util_1_1logger_1_1Spdlog.html#a23839a20d23c9681b1e1a9bf3570d12e">asr::util::logger::Spdlog::generate_sink</a></div><div class="ttdeci">spdlog::sink_ptr generate_sink(const Config::Spdlog::Sink &amp;the_sink_config)</div><div class="ttdef"><b>Definition:</b> Spdlog.cpp:102</div></div>
+<div class="ttc" id="namespaceasr_html"><div class="ttname"><a href="namespaceasr.html">asr</a></div><div class="ttdef"><b>Definition:</b> Config.h:11</div></div>
+<div class="ttc" id="classasr_1_1util_1_1logger_1_1Spdlog_html_a568e15d2d72dd64ff1e3dc4d4455b52c"><div class="ttname"><a href="classasr_1_1util_1_1logger_1_1Spdlog.html#a568e15d2d72dd64ff1e3dc4d4455b52c">asr::util::logger::Spdlog::output</a></div><div class="ttdeci">void output(const Logger::Level the_log_level, const std::string &amp;the_log_message) override</div><div class="ttdoc">ログ出力 </div><div class="ttdef"><b>Definition:</b> Spdlog.cpp:68</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_cb1fba50e0f506512b6677db84206607.html">asr</a></li><li class="navelem"><a class="el" href="dir_579abdae5e539dc381fb28cc6fba7370.html">util</a></li><li class="navelem"><a class="el" href="dir_c4e72a2f4ae50c42a5c090a41d308723.html">logger</a></li><li class="navelem"><a class="el" href="Spdlog_8h.html">Spdlog.h</a></li>
+    <li class="footer">構築:
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
+</body>
+</html>

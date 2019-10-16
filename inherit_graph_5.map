@@ -1,0 +1,4 @@
+<map id="クラス階層図" name="クラス階層図">
+<area shape="rect" id="node1" href="$structasr_1_1util_1_1logger_1_1ILogger.html" title="ログ出力の詳細を担うインタフェース " alt="" coords="5,5,131,47"/>
+<area shape="rect" id="node2" href="$classasr_1_1util_1_1logger_1_1Spdlog.html" title="spdlogを用いてログ出力する " alt="" coords="179,5,304,47"/>
+</map>

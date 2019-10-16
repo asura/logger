@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>asr_util_logger: Config.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">asr_util_logger
+   &#160;<span id="projectnumber">1.0.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'検索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>総合概要</span></a></li>
+      <li><a href="namespaces.html"><span>名前空間</span></a></li>
+      <li><a href="annotated.html"><span>クラス</span></a></li>
+      <li class="current"><a href="files.html"><span>ファイル</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="検索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>ファイル一覧</span></a></li>
+      <li><a href="globals.html"><span>ファイルメンバ</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('Config_8h_source.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">Config.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="Config_8h.html">[詳解]</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef ASR_UTIL_LOGGER_CONFIG_H</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define ASR_UTIL_LOGGER_CONFIG_H</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;yaml-cpp/yaml.h&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;istream&gt;</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span>  <span class="comment">// std::unique_ptr</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="namespaceasr.html">   11</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceasr.html">asr</a></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div><div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="namespaceasr_1_1util.html">   13</a></span>&#160;<span class="keyword">namespace </span>util</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div><div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="namespaceasr_1_1util_1_1logger.html">   15</a></span>&#160;<span class="keyword">namespace </span>logger</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div><div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classasr_1_1util_1_1logger_1_1Config.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="classasr_1_1util_1_1logger_1_1Config.html">Config</a></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog.html">   20</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog.html">Spdlog</a></div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    {</div><div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink.html">   22</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink.html">Sink</a></div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        {</div><div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink.html#abfaa6a18f9fabe70aea76a695057b347">   24</a></span>&#160;            std::string <a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink.html#abfaa6a18f9fabe70aea76a695057b347">type</a>;</div><div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink.html#aade9472f683c6a592b8110c1b7d7e864">   25</a></span>&#160;            std::string <a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink.html#aade9472f683c6a592b8110c1b7d7e864">level</a>;</div><div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink.html#a9054c6e2e0f91a278ec791204ebfa508">   26</a></span>&#160;            std::unique_ptr&lt;std::string&gt; <a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink.html#a9054c6e2e0f91a278ec791204ebfa508">pattern</a>;</div><div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink.html#a0ceb0b88b6236d914a8ab0f536864f22">   27</a></span>&#160;            std::unique_ptr&lt;std::string&gt; <a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink.html#a0ceb0b88b6236d914a8ab0f536864f22">ident</a>;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink.html#a97ec49f22fae2085c5ac3e92ae7f851b">Sink</a>() = <span class="keyword">delete</span>;</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keyword">explicit</span> <a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink.html#a97ec49f22fae2085c5ac3e92ae7f851b">Sink</a>(<span class="keyword">const</span> YAML::Node&amp; node);</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink.html#a97ec49f22fae2085c5ac3e92ae7f851b">Sink</a>(<span class="keyword">const</span> <a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink.html">Sink</a>&amp;) = <span class="keyword">delete</span>;</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink.html#a97ec49f22fae2085c5ac3e92ae7f851b">Sink</a>(<a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink.html">Sink</a>&amp;&amp; the_other) = <span class="keywordflow">default</span>;</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        };</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div><div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog.html#a2fea18b599f68337904db5880de8f0ef">   35</a></span>&#160;        std::string <a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog.html#a2fea18b599f68337904db5880de8f0ef">level</a>;</div><div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog.html#a17ba619a389bc2972ed4a31900bb01a7">   36</a></span>&#160;        std::string <a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog.html#a17ba619a389bc2972ed4a31900bb01a7">name</a>;</div><div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog.html#a58b980e289b1e9259ed1ea40bbbe8a97">   37</a></span>&#160;        std::vector&lt;Sink&gt; <a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog.html#a58b980e289b1e9259ed1ea40bbbe8a97">sinks</a>;</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog.html#a5837db998bb3c941fca9db2cff30b352">Spdlog</a>() = <span class="keyword">delete</span>;</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keyword">explicit</span> <a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog.html#a5837db998bb3c941fca9db2cff30b352">Spdlog</a>(<span class="keyword">const</span> YAML::Node&amp; node);</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    };</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div><div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="structasr_1_1util_1_1logger_1_1Config_1_1TopLevel.html">   43</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1TopLevel.html">TopLevel</a></div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    {</div><div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="structasr_1_1util_1_1logger_1_1Config_1_1TopLevel.html#a4827e0a0766a766600ab35bb2785758f">   45</a></span>&#160;        std::string <a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1TopLevel.html#a4827e0a0766a766600ab35bb2785758f">logger</a>;</div><div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="structasr_1_1util_1_1logger_1_1Config_1_1TopLevel.html#aebb13761a44888b8b35baf9fb276aedc">   46</a></span>&#160;        std::unique_ptr&lt;Spdlog&gt; <a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1TopLevel.html#aebb13761a44888b8b35baf9fb276aedc">spdlog</a>;</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1TopLevel.html">TopLevel</a>() = <span class="keyword">delete</span>;</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keyword">explicit</span> <a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1TopLevel.html">TopLevel</a>(<span class="keyword">const</span> YAML::Node&amp; node);</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    };</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classasr_1_1util_1_1logger_1_1Config.html#a2378d1862fa2e1c768676455119a0b72">   53</a></span>&#160;    <a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1TopLevel.html">TopLevel</a> <a class="code" href="classasr_1_1util_1_1logger_1_1Config.html#a2378d1862fa2e1c768676455119a0b72">m_data</a>;</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="classasr_1_1util_1_1logger_1_1Config.html#adff7f2713db9754df26580e947b0f734">Config</a>() = <span class="keyword">delete</span>;</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classasr_1_1util_1_1logger_1_1Config.html#adff7f2713db9754df26580e947b0f734">Config</a>(std::istream&amp; the_istream);</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div><div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classasr_1_1util_1_1logger_1_1Config.html#a90369249870e6e573cf9422fc1d4dbc4">   59</a></span>&#160;    <span class="keyword">const</span> <a class="code" href="structasr_1_1util_1_1logger_1_1Config_1_1TopLevel.html">TopLevel</a>&amp; <a class="code" href="classasr_1_1util_1_1logger_1_1Config.html#a90369249870e6e573cf9422fc1d4dbc4">data</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classasr_1_1util_1_1logger_1_1Config.html#a2378d1862fa2e1c768676455119a0b72">m_data</a>; }</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;};</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}  <span class="comment">// namespace logger</span></div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}  <span class="comment">// namespace util</span></div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}  <span class="comment">// namespace asr</span></div><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#endif  // ASR_UTIL_LOGGER_CONFIG_H</span></div><div class="ttc" id="classasr_1_1util_1_1logger_1_1Config_html_a2378d1862fa2e1c768676455119a0b72"><div class="ttname"><a href="classasr_1_1util_1_1logger_1_1Config.html#a2378d1862fa2e1c768676455119a0b72">asr::util::logger::Config::m_data</a></div><div class="ttdeci">TopLevel m_data</div><div class="ttdef"><b>Definition:</b> Config.h:53</div></div>
+<div class="ttc" id="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink_html_aade9472f683c6a592b8110c1b7d7e864"><div class="ttname"><a href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink.html#aade9472f683c6a592b8110c1b7d7e864">asr::util::logger::Config::Spdlog::Sink::level</a></div><div class="ttdeci">std::string level</div><div class="ttdef"><b>Definition:</b> Config.h:25</div></div>
+<div class="ttc" id="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink_html"><div class="ttname"><a href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink.html">asr::util::logger::Config::Spdlog::Sink</a></div><div class="ttdef"><b>Definition:</b> Config.h:22</div></div>
+<div class="ttc" id="structasr_1_1util_1_1logger_1_1Config_1_1TopLevel_html_a4827e0a0766a766600ab35bb2785758f"><div class="ttname"><a href="structasr_1_1util_1_1logger_1_1Config_1_1TopLevel.html#a4827e0a0766a766600ab35bb2785758f">asr::util::logger::Config::TopLevel::logger</a></div><div class="ttdeci">std::string logger</div><div class="ttdef"><b>Definition:</b> Config.h:45</div></div>
+<div class="ttc" id="classasr_1_1util_1_1logger_1_1Config_html_adff7f2713db9754df26580e947b0f734"><div class="ttname"><a href="classasr_1_1util_1_1logger_1_1Config.html#adff7f2713db9754df26580e947b0f734">asr::util::logger::Config::Config</a></div><div class="ttdeci">Config()=delete</div></div>
+<div class="ttc" id="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_html_a2fea18b599f68337904db5880de8f0ef"><div class="ttname"><a href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog.html#a2fea18b599f68337904db5880de8f0ef">asr::util::logger::Config::Spdlog::level</a></div><div class="ttdeci">std::string level</div><div class="ttdef"><b>Definition:</b> Config.h:35</div></div>
+<div class="ttc" id="structasr_1_1util_1_1logger_1_1Config_1_1TopLevel_html_aebb13761a44888b8b35baf9fb276aedc"><div class="ttname"><a href="structasr_1_1util_1_1logger_1_1Config_1_1TopLevel.html#aebb13761a44888b8b35baf9fb276aedc">asr::util::logger::Config::TopLevel::spdlog</a></div><div class="ttdeci">std::unique_ptr&lt; Spdlog &gt; spdlog</div><div class="ttdef"><b>Definition:</b> Config.h:46</div></div>
+<div class="ttc" id="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_html"><div class="ttname"><a href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog.html">asr::util::logger::Config::Spdlog</a></div><div class="ttdef"><b>Definition:</b> Config.h:20</div></div>
+<div class="ttc" id="structasr_1_1util_1_1logger_1_1Config_1_1TopLevel_html"><div class="ttname"><a href="structasr_1_1util_1_1logger_1_1Config_1_1TopLevel.html">asr::util::logger::Config::TopLevel</a></div><div class="ttdef"><b>Definition:</b> Config.h:43</div></div>
+<div class="ttc" id="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink_html_a97ec49f22fae2085c5ac3e92ae7f851b"><div class="ttname"><a href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink.html#a97ec49f22fae2085c5ac3e92ae7f851b">asr::util::logger::Config::Spdlog::Sink::Sink</a></div><div class="ttdeci">Sink()=delete</div></div>
+<div class="ttc" id="namespaceasr_html"><div class="ttname"><a href="namespaceasr.html">asr</a></div><div class="ttdef"><b>Definition:</b> Config.h:11</div></div>
+<div class="ttc" id="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink_html_a0ceb0b88b6236d914a8ab0f536864f22"><div class="ttname"><a href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink.html#a0ceb0b88b6236d914a8ab0f536864f22">asr::util::logger::Config::Spdlog::Sink::ident</a></div><div class="ttdeci">std::unique_ptr&lt; std::string &gt; ident</div><div class="ttdef"><b>Definition:</b> Config.h:27</div></div>
+<div class="ttc" id="classasr_1_1util_1_1logger_1_1Config_html_a90369249870e6e573cf9422fc1d4dbc4"><div class="ttname"><a href="classasr_1_1util_1_1logger_1_1Config.html#a90369249870e6e573cf9422fc1d4dbc4">asr::util::logger::Config::data</a></div><div class="ttdeci">const TopLevel &amp; data() const </div><div class="ttdef"><b>Definition:</b> Config.h:59</div></div>
+<div class="ttc" id="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_html_a58b980e289b1e9259ed1ea40bbbe8a97"><div class="ttname"><a href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog.html#a58b980e289b1e9259ed1ea40bbbe8a97">asr::util::logger::Config::Spdlog::sinks</a></div><div class="ttdeci">std::vector&lt; Sink &gt; sinks</div><div class="ttdef"><b>Definition:</b> Config.h:37</div></div>
+<div class="ttc" id="classasr_1_1util_1_1logger_1_1Config_html"><div class="ttname"><a href="classasr_1_1util_1_1logger_1_1Config.html">asr::util::logger::Config</a></div><div class="ttdef"><b>Definition:</b> Config.h:17</div></div>
+<div class="ttc" id="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink_html_a9054c6e2e0f91a278ec791204ebfa508"><div class="ttname"><a href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink.html#a9054c6e2e0f91a278ec791204ebfa508">asr::util::logger::Config::Spdlog::Sink::pattern</a></div><div class="ttdeci">std::unique_ptr&lt; std::string &gt; pattern</div><div class="ttdef"><b>Definition:</b> Config.h:26</div></div>
+<div class="ttc" id="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_html_a5837db998bb3c941fca9db2cff30b352"><div class="ttname"><a href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog.html#a5837db998bb3c941fca9db2cff30b352">asr::util::logger::Config::Spdlog::Spdlog</a></div><div class="ttdeci">Spdlog()=delete</div></div>
+<div class="ttc" id="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink_html_abfaa6a18f9fabe70aea76a695057b347"><div class="ttname"><a href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_1_1Sink.html#abfaa6a18f9fabe70aea76a695057b347">asr::util::logger::Config::Spdlog::Sink::type</a></div><div class="ttdeci">std::string type</div><div class="ttdef"><b>Definition:</b> Config.h:24</div></div>
+<div class="ttc" id="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog_html_a17ba619a389bc2972ed4a31900bb01a7"><div class="ttname"><a href="structasr_1_1util_1_1logger_1_1Config_1_1Spdlog.html#a17ba619a389bc2972ed4a31900bb01a7">asr::util::logger::Config::Spdlog::name</a></div><div class="ttdeci">std::string name</div><div class="ttdef"><b>Definition:</b> Config.h:36</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_cb1fba50e0f506512b6677db84206607.html">asr</a></li><li class="navelem"><a class="el" href="dir_579abdae5e539dc381fb28cc6fba7370.html">util</a></li><li class="navelem"><a class="el" href="dir_c4e72a2f4ae50c42a5c090a41d308723.html">logger</a></li><li class="navelem"><a class="el" href="Config_8h.html">Config.h</a></li>
+    <li class="footer">構築:
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.11 </li>
+  </ul>
+</div>
+</body>
+</html>
