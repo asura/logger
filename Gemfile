@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'asciidoctor', '1.5.6.1'
+gem 'asciidoctor', '1.5.8'
 gem 'asciidoctor-diagram', '1.5.6'
 gem 'asciidoctor-pdf'
 gem 'asciidoctor-pdf-cjk'
